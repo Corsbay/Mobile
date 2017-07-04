@@ -1,0 +1,58 @@
+page-order-payment {
+
+	.order-content{
+		background-color: color($colors, background, base);
+
+		.text-title {
+			margin: 0px;
+			padding: 0px 0px 10px 0px;
+			font-size: 1.6rem;
+			font-weight: 500;
+			white-space: pre-line;
+		}
+
+		.text-content {
+			font-size: 1.5rem;
+			span {
+				font-weight: 500;
+			}
+		}
+
+		.price-label {
+			padding: 0px;
+			margin: 0px;
+			color: $theme-color-2;
+			/*font-weight: 00;*/
+			content: " USD";
+		}
+
+		.list-sub-header {
+			font-size: 1.2rem;
+			font-weight: 400;
+			color: $text-color;
+			text-transform: none;
+		}
+
+		.button {
+			@include element-shadow();
+			color: $theme-color-2;
+			background-color: $white;
+		}
+
+/*		.page-button {
+			color: $white;
+		}*/
+
+		.section-title {
+			padding: 15px 15px 0px 15px;
+			text-align: left;
+			color: $positive-text;
+
+			.sub-text {
+				color: $black-d;
+			}
+		}
+
+	}
+
+}

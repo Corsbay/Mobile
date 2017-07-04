@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Seller Settings</ion-title>
+    <ion-buttons end >
+    <!-- [hidden]="!profile-formForm.dirty"> -->
+      <button ion-button (click)="saveSeller()">
+        Save
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="seller-form-content">
+
+  <form [formGroup]="sellerForm" class="seller-form">
+
+    <ion-list>
+      <ion-item tappable (click)="cameraActionSheet()">
+        <ion-thumbnail item-left>
+          <preload-image [ratio]="{w:1, h:1}" [src]="seller.image" class="seller-image"></preload-image>
+        </ion-thumbnail>
+        <button ion-button clear item-left>Change seller picture</button>
+      </ion-item>
+    </ion-list>
+    
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Commercial Name</ion-label>
+        <ion-input type="text" formControlName="com_name" placeholder=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Phone number</ion-label>
+        <ion-input type="tel" formControlName="phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>E-mail</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item-divider></ion-item-divider>
+      <ion-item>
+        <ion-label stacked>About us</ion-label>
+        <ion-textarea formControlName="about" rows="6" maxlength="340"></ion-textarea>
+      </ion-item>
+
+<!--       <ion-item-divider>Commercial Address</ion-item-divider>
+      <ion-item>
+        <ion-label>Street 1</ion-label>
+        <ion-input type="text" formControlName="street_1"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Street 2 (optional)</ion-label>
+        <ion-input type="text" formControlName="street_2"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>City</ion-label>
+        <ion-input type="text" formControlName="city"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>State</ion-label>
+        <ion-input type="text" formControlName="state"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>ZIP Code</ion-label>
+        <ion-input type="text" formControlName="zip_code"></ion-input>
+      </ion-item> -->
+
+    </ion-list>
+
+    <ion-list class="switchers-list">
+      <ion-item class="switcher-item">
+        <ion-label>Notifications</ion-label>
+        <ion-toggle></ion-toggle>
+      </ion-item>
+    </ion-list>
+
+  </form>
+
+  <button class="alt-button" ion-button full (click)="showPrivacyModal()">Privacy policy</button>
+
+  <button class="alt-button" ion-button full (click)="showTermsModal()">Terms of use</button>
+
+  <button class="alt-button logout-button" ion-button full icon-left (click)="logout()">
+    <ion-icon ios="log-out" md="log-out"></ion-icon>
+    Log out
+  </button>
+
+</ion-content>

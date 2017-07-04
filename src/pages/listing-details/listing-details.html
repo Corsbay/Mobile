@@ -1,0 +1,240 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Details</ion-title>
+<!--     <ion-buttons end>
+	    <button ion-button icon-only color="royal" (click)="shareListing()">
+	      <ion-icon ios="ios-share" md="md-share"></ion-icon>
+	    </button>
+	  </ion-buttons> -->
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="listing-content">
+
+	<ion-card class="item-card-content">
+
+    <ion-slides tappable (click)="presentImageModal()">
+      <ion-slide *ngFor="let media of listing?.medias" style="background-color: white">
+        <preload-image [ratio]="{w:4, h:3}" [src]="media.media_path" title="listing.title"></preload-image>
+      </ion-slide>
+    </ion-slides>
+
+
+    <ion-fab top right>
+      <button ion-fab mini class="slide-action-button" (click)="shareListing()">
+        <ion-icon isActive="true" name='md-share'></ion-icon>
+      </button>
+      <button ion-fab mini class="slide-action-button">
+        <ion-icon isActive="true" name='md-heart'></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-card-content>
+      <ion-card-title class="item-title">
+        {{listing.title}}
+      </ion-card-title>
+      <span item-center class="delivery_options" *ngIf="listing.delivery">
+        Delivery
+      </span>
+      <span item-center class="delivery_options" *ngIf="listing.carryout">
+         - Carryout
+      </span>
+      <span item-center class="delivery_options" *ngIf="listing.shipping">
+         - Shipping
+      </span>
+      <p ion-text>
+        {{ listing?.distance | distancePipe: 'miles' }} away
+      </p>
+
+      <ion-row no-padding>
+        <ion-col no-padding text-left width-50>
+          <h2 class="item-price" item-right>
+            {{ listing.main_price | currency: listing.currency: true:'1.2-2'}}
+          </h2>
+        </ion-col>
+        <ion-col no-padding text-right width-50>
+          <button ion-button class="question-button" clear small icon-left (click)="setAsFavorite()">
+            <ion-icon isActive="true" name='ios-chatbubbles-outline'></ion-icon>
+            Ask a question
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+<!--     <ion-item-divider>Overview</ion-item-divider>
+    <ion-item>
+      <p class="content-text">
+        {{listing.summary}}
+      </p>
+    </ion-item> -->
+
+
+    <!-- <ion-item-divider>Description</ion-item-divider> -->
+    <ion-list-header>Descrition</ion-list-header>
+
+    <ion-item-group>
+      <ion-item text-wrap>
+        <p class="content-text">
+          {{listing.description}}
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon item-left name="ios-restaurant-outline"></ion-icon>
+        <h2 item-start>{{ listing.measure_unit }} </h2>
+        <h2 item-content>{{ listing.unit_value }}</h2>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <!-- <ion-item-divider>Location</ion-item-divider> -->
+      <ion-list-header>Location</ion-list-header>
+      <section #map id="map" class="map-location">
+        <div id="map">
+        </div>
+      </section>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider></ion-item-divider>
+      <button ion-item (click)="showReviews()">
+      <ion-icon item-left name='ios-chatbubbles-outline'></ion-icon>
+        <h2 item-start>Reviews ({{listing.total_reviews}})</h2>
+        <h1 item-content>
+          <rating class="reviews-button-rate" [ngModel]="listing.total_rate" max="5" read-only="true"></rating>
+        </h1>
+      </button>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider></ion-item-divider>
+      <ion-item>
+        <h2 class="content-title" ion-text>Payment Methods</h2>
+        <img src="./assets/images/cards.jpeg" height="30px">
+        <!-- <span>Paypal, Visa, MasterCard, American Express, Discover</span> -->
+        <sub ion-text color="secondary">
+          <p>Corsbay keep your payment informations secure.</p>
+          <p>Sellers don't receive your credit card information.</p>
+        </sub>
+      </ion-item>
+    </ion-item-group>
+
+
+    <ion-item-group *ngIf="listing.delivery || listing.carryout">
+  <!--     <ion-item-divider>
+        Delivery / Carryout Policies & FAQs
+      </ion-item-divider> -->
+      <ion-list-header>
+        Delivery / Carryout Policies & FAQs
+      </ion-list-header>
+      <ion-item>
+        <h2 class="content-title">Estimated delivery:</h2>
+          <p class="content-text">
+            {{listing.delivery_processing_time}} minutes
+          </p>
+        <h2 class="content-title">Delivery Policies & FAQs</h2>
+          <p class="content-text">
+            {{listing.delivery_policies}}
+          </p>
+      </ion-item>
+
+      <!-- <ion-item-divider>Local Schedule</ion-item-divider> -->
+      <ion-list-header>Local Schedule</ion-list-header>
+      <ion-item *ngFor="let schedule of listing.schedule">
+        <ion-row>
+          <ion-col width-100 class="schedule-data">
+            <div class="data-item">
+              <div class="item-content">
+
+                <h2 class="item-title ">
+                  <ion-icon class="title-icon" ios="ios-calendar" md="md-calendar">
+                  </ion-icon>
+                  {{ schedule?.day }}
+                </h2>
+
+                <div class="item-description">
+                  <h2 class="description-text">
+                    <ion-icon class="description-icon" name="clock"></ion-icon>
+                    <span class="description-label">From: </span>{{ schedule?.from_time | momentPipe: ['hh:mm a', 'HH:mm'] }} -
+                    <span class="description-label">To: </span>{{ schedule?.to_time | momentPipe: ['hh:mm a', 'HH:mm'] }}
+                  </h2>
+                </div>
+
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-item-group>
+
+
+    <ion-item-group  *ngIf="listing.shipping">
+      <!-- <ion-item-divider>Shipping & policies</ion-item-divider> -->
+      <ion-list-header>Shipping Policies & FAQs</ion-list-header>
+      <ion-item >
+        <h2 class="content-title" ion-text >
+          Shipping fee
+        </h2>
+        {{listing.shepping_fee}}
+      </ion-item>
+      <ion-item >
+        <h2 item-start> Ready to ship in </h2>
+        <p item-content class="content-text">{{listing.shipping_processing_time}} business day</p>
+      </ion-item>
+      <ion-item >
+        <h2 class="content-title" ion-text>
+          Return & Cancellation.
+        </h2>
+        <p class="content-text">- {{listing.refund_policies}}</p>
+        <p class="content-text">- {{listing.cancellation_policies}}</p>
+
+        <h2 class="content-title" ion-text>
+          Polices & FAQs
+        </h2>
+        <p class="content-text">{{listing.additional_policies}}</p>
+      </ion-item>
+    </ion-item-group>
+
+
+    <ion-item-group>
+      <!-- <ion-item-divider>Seller information</ion-item-divider> -->
+      <ion-list-header>Seller Information</ion-list-header>
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="{{ listing.seller_profile?.image }}">
+        </ion-avatar>
+        <h2>{{listing.seller_profile?.com_name}}</h2>
+      </ion-item>
+      <ion-item-divider></ion-item-divider>
+    </ion-item-group>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar class="listing-detail-footer">
+		<ion-row class="footer-row">
+			<ion-col width-60>
+				<div class="footer-text">
+     			{{ listing.main_price | currency: listing.currency: true:'1.2-2' }}
+   			</div>
+<!--         <div class="footer-rate">
+          <rating  [ngModel]="listing.total_rate" max="5" read-only="true"></rating>
+        </div> -->
+			</ion-col>
+			<ion-col width-40>
+				<button class="button-order" ion-button small icon-left (click)="presentOrderModal()">
+		      <ion-icon name="restaurant" md="md-restaurant"></ion-icon>
+		      Order
+		  	</button>
+			</ion-col>
+		</ion-row>
+	</ion-toolbar>
+</ion-footer>

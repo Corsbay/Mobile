@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons end >
+    <!-- [hidden]="!profile-formForm.dirty"> -->
+      <button ion-button (click)="saveProfile()">
+        Save
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="profile-form-content">
+
+  <form [formGroup]="ProfileForm" class="profile-form">
+
+    <ion-list>
+
+      <ion-item class="profile-image-content" tappable (click)="cameraActionSheet()">
+        <ion-row no-padding class="profile-image-row">
+          <ion-col no-padding width-40>
+            <!-- <img class="profile-image" [src]="profile.image"> -->
+            <preload-image [ratio]="{w:1, h:1}" [src]="profile.image" class="profile-image"></preload-image>
+          </ion-col>
+        </ion-row>
+        <h3 class="image-action">Change profile picture</h3>
+      </ion-item>
+    </ion-list>
+    
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>First Name</ion-label>
+        <ion-input type="text" formControlName="firstName" placeholder="Your Name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Last Name</ion-label>
+        <ion-input type="text" formControlName="lastName" placeholder="Your Last Name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Birthday</ion-label>
+        <ion-datetime formControlName="birthday" displayFormat="MMM DD YYYY">
+        </ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Gender</ion-label>
+        <ion-select interface="action-sheet" formControlName="gender">
+          <ion-option value="female">Female</ion-option>
+          <ion-option value="male">Male</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>About You</ion-label>
+        <ion-textarea formControlName="about" rows="6" maxlength="340"></ion-textarea>
+      </ion-item>
+
+    </ion-list>
+
+<!-- 
+    <div class="user-preferences-row">
+      <span class="radio-tags-label">Currency</span>
+      <ion-list class="radio-tags" radio-group formControlName="currency">
+        <ion-item class="radio-tag">
+          <ion-label>&#36;</ion-label>
+          <ion-radio value="dollar"></ion-radio>
+        </ion-item>
+        <ion-item class="radio-tag">
+          <ion-label>
+            <span>&euro;</span>
+          </ion-label>
+          <ion-radio value="euro"></ion-radio>
+        </ion-item>
+        <ion-item class="radio-tag">
+          <ion-label>
+            <span>&pound;</span>
+          </ion-label>
+          <ion-radio value="pound"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </div> -->
+
+<!--     <div class="user-preferences-row">
+      <span class="radio-tags-label">Weather</span>
+      <ion-list class="radio-tags" radio-group formControlName="weather">
+        <ion-item class="radio-tag">
+          <ion-label>&deg;C</ion-label>
+          <ion-radio value="celsius"></ion-radio>
+        </ion-item>
+        <ion-item class="radio-tag">
+          <ion-label>
+            <span>&deg;F</span>
+          </ion-label>
+          <ion-radio value="fahrenheit"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </div> -->
+
+    <ion-list class="switchers-list">
+      <ion-item class="switcher-item">
+        <ion-label>Notifications</ion-label>
+        <ion-toggle formControlName="notifications"></ion-toggle>
+      </ion-item>
+    </ion-list>
+
+
+  </form>
+
+  <button class="alt-button" ion-button full (click)="showPrivacyModal()">Privacy policy</button>
+
+  <button class="alt-button" ion-button full (click)="showTermsModal()">Terms of use</button>
+
+  <button class="alt-button logout-button" ion-button full icon-left (click)="logout()">
+    <ion-icon ios="log-out" md="log-out"></ion-icon>
+    Log out
+  </button>
+
+</ion-content>

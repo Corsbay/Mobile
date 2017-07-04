@@ -1,0 +1,151 @@
+<ion-header>
+  <ion-navbar>
+
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+      <!-- <ion-icon ios="ios-contact" md="md-contact"></ion-icon> -->
+    </button>
+    <ion-title>Profile</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="editProfile()">
+        Edit
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="profile-content">
+  <ion-list class="profile-details">
+    <ion-row class="profile-main-data-row">
+      <ion-col no-padding width-33>
+        <!-- <img class="profile-image" [src]="profile.image"> -->
+        <preload-image [ratio]="{w:1, h:1}" [src]="profile.image" class="profile-image"></preload-image>
+      </ion-col>
+      <ion-col no-padding>
+
+        <ion-row class="profile-name-row">
+          <ion-col no-padding>
+              <h1 class="profile-first-name">{{profile.firstName}}</h1>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="profile-name-row">
+          <ion-col no-padding>
+            <h2 class="profile-last-name">{{profile.lastName}}</h2>
+          </ion-col>
+        </ion-row>
+
+<!--         <ion-row class="profile-name-row">
+          <ion-col no-padding>
+            <span class="profile-location" width-50>{{profile.location}}</span>
+          </ion-col>
+        </ion-row> -->
+
+      </ion-col>
+    </ion-row>
+
+<!--     <ion-row class="social-presence-row">
+      <ion-col width-50 class="social-presence-item">
+        <a (click)="goToFollowersList()">
+          <h2 class="social-presence-value">2</h2>
+          <h4 class="social-presence-title">
+            <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+            Favorites
+          </h4>
+        </a>
+      </ion-col>
+      <ion-col width-50 class="social-presence-item">
+        <a (click)="goToFollowingList()">
+          <h2 class="social-presence-value">8</h2>
+          <h4 class="social-presence-title">
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            Reviews
+          </h4>
+        </a>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row wrap class="profile-bio-row">
+      <ion-col no-padding width-100 >
+      <!-- <h4 class="profile-label"> About me </h4> -->
+        <p class="profile-description">
+          {{profile.about}}
+        </p>
+      </ion-col>
+    </ion-row>
+
+  </ion-list>
+
+  <ion-list>
+    <ion-item-divider>Delivery Address</ion-item-divider>
+    <ion-item class="address-primary" *ngIf="primaryAddress">
+      <h2 class="address-title">{{ primaryAddress?.full_name }}</h2>
+      <p>{{ primaryAddress?.street_1 }}</p>
+      <p>{{ primaryAddress?.city }}, {{ primaryAddress?.state }} {{ primaryAddress?.zip_code }}</p>
+      <p>{{ primaryAddress?.country }}</p>
+      <h2 item-right *ngIf="primaryAddress?.primary">Primary</h2>
+    </ion-item>
+    <button ion-item (click)="profileAddress()">
+      Add a new Address
+    </button>
+  </ion-list>
+
+  <ion-list *ngIf="profile.seller_profile">
+<!--     <ion-item>
+      <ion-thumbnail item-left>
+        <preload-image [ratio]="{w:1, h:1}" [src]="seller?.image" class="seller-image"></preload-image>
+      </ion-thumbnail>
+      <h2> {{seller?.com_name}} </h2>
+    </ion-item> -->
+    <button ion-item icon-left class="list-items-section"  (click)="setSeller()">
+      <ion-icon item-left name="ios-settings-outline"></ion-icon>
+      Seller Settings
+    </button>
+  </ion-list>
+  <ion-list *ngIf="!profile.seller_profile">
+    <button ion-item icon-left class="list-items-section" (click)="setSeller()">
+      <ion-icon item-left name="ios-settings-outline"></ion-icon>
+      <h2>Set Seller profile</h2>
+      <p>Want to list your products?</p>
+      <p>set your profile and start right now.</p>
+    </button>
+  </ion-list>
+
+  <ion-list class="profile-list-section">
+    <button ion-item icon-left class="list-items-section">
+      <ion-icon item-left ios="ios-restaurant" md="md-restaurant"></ion-icon>
+      Orderings
+    </button>  
+
+    <button ion-item icon-left class="list-items-section">
+      <ion-icon item-left ios="ios-bookmarks" md="md-bookmarks"></ion-icon>
+      Bookings
+    </button>  
+
+    <button ion-item icon-left class="list-items-section" (click)="goToUserListing()">
+     <ion-icon item-left ios="ios-list-box" md="md-list-box"></ion-icon>
+      Listing
+    </button> 
+
+    <button ion-item icon-left class="list-items-section">
+      <ion-icon item-left ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>
+      Messages
+    </button>
+
+    <button ion-item icon-left class="list-items-section">
+      <ion-icon item-left ios="ios-cash" md="md-cash"></ion-icon>
+      Balance
+    </button>
+
+    <button ion-item icon-left class="list-items-section">
+      <ion-icon item-left ios="ios-cog" md="md-cog"></ion-icon>
+      Settings
+    </button>
+
+    <ion-item-divider color="light"></ion-item-divider>
+
+  </ion-list>
+
+</ion-content>

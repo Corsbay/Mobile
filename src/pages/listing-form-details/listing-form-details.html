@@ -1,0 +1,121 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="cancel()">
+        Cancel
+      </button>
+    </ion-buttons>
+    <ion-title>Details</ion-title>
+
+    <ion-buttons end>
+      <button ion-button type='submit' (click)="save()">
+        Save
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="form-content">
+	<!-- Step 3 -->
+	<form class="form-style" [formGroup]="formDetails">
+	  <section class="form-section">
+	    <h2 class="section-title">
+	      <p>Here you can set up the final details of your listing.</p>
+	      <p>like your shipping options and policies!</p>
+	    </h2>
+	  </section>
+
+
+	  <ion-list>
+
+	  	<ion-item-group>
+		  	<ion-item-divider>
+		  		Listing options
+		  	</ion-item-divider>
+		  	<button ion-item>
+		  		<h2>Add option</h2>
+		  	</button>
+		  </ion-item-group>
+
+
+		  <ion-item-group>
+		  	<ion-item-divider>Mesure system</ion-item-divider>
+		  	<ion-item>
+		      <ion-label>Measure unit</ion-label>
+	        <ion-select formControlName="measure_unit" multiple="false">
+	          <ion-option *ngFor="let unit of measureUnits" value="{{unit.value}}">
+	            {{unit.label}}
+	          </ion-option>
+	        </ion-select>
+		    </ion-item>
+		    <ion-item>
+		    	<ion-label>Volume</ion-label>
+		      <ion-input formControlName="unit_value" type="number" text-right>
+		      </ion-input>
+		    </ion-item>
+
+	  		<ion-item-divider></ion-item-divider>
+	  		<ion-item>
+		      <ion-label>Item Conditions</ion-label>
+	        <ion-select formControlName="condition" multiple="false">
+	          <ion-option *ngFor="let condition of conditions" value="{{condition.value}}">
+	            {{condition.label}}
+	          </ion-option>
+	        </ion-select>
+		    </ion-item>
+		    <ion-item>
+		      <ion-label stacked>Condition details</ion-label>
+		      <ion-textarea rows="2" formControlName="condition_details" maxlength="400"></ion-textarea>
+	      </ion-item>
+		  </ion-item-group>
+
+		  <ion-item-group>
+		    <ion-list-header>
+					Shipping & Policies
+				</ion-list-header>
+
+		    <ion-item>
+		      <ion-label>Shipping Fee</ion-label>
+		      <ion-input text-right type="number" formControlName="shipping_fee"></ion-input>
+		    </ion-item>
+
+		    <ion-item>
+	      	<ion-label>Ready to ship in: </ion-label>
+	      	<ion-select formControlName="shipping_processing_time">
+			      <ion-option value="1">1 Business day</ion-option>
+			      <ion-option value="2">2 Business day</ion-option>
+			      <ion-option value="3">3 Business day</ion-option>
+			      <ion-option value="4">4 Business day</ion-option>
+			    </ion-select>
+	    	</ion-item>
+
+	    	<ion-item>
+		      <ion-label stacked>Refund Policies</ion-label>
+		      <ion-textarea rows="3" formControlName="refund_policies" maxlength="800"></ion-textarea>
+	      </ion-item>
+
+	      <ion-item>
+		      <ion-label stacked>Cancellation Policies</ion-label>
+		      <ion-textarea rows="3" formControlName="cancellation_policies" maxlength="800"></ion-textarea>
+	      </ion-item>
+
+	      <ion-item>
+		      <ion-label stacked>Additional Policies and FAQs</ion-label>
+		      <ion-textarea rows="8" formControlName="additional_policies" maxlength="800"></ion-textarea>
+	      </ion-item>
+	    </ion-item-group>
+
+	    <ion-item-group>
+	    	<ion-item-divider></ion-item-divider>
+		    <ion-item class="switcher-item">
+		      <ion-label>Ask Confirmation?</ion-label>
+		      <ion-toggle formControlName="confirmation" checked="false"></ion-toggle>
+			  </ion-item>
+			</ion-item-group>
+			
+    </ion-list>
+
+	</form>
+</ion-content>

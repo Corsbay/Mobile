@@ -1,0 +1,13 @@
+{
+  "name": "Corsbay",
+  "short_name": "Corsbay",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/img/appicon.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#00ffff",
+  "theme_color": "#33cc66"
+}

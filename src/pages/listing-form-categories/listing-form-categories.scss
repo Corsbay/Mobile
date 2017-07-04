@@ -1,0 +1,47 @@
+page-listing-form-categories {
+
+	.form-content {
+		background-color: $white-a;
+
+		.form-style {
+
+			.form-section	{
+				padding: 0px 5px;
+				padding-bottom: 10px;
+
+				.item:first-child	{
+					margin-top: 10px;
+				}
+			}
+
+			.checkbox-list{
+				padding-left: 15px;
+				padding-right: 15px;
+				@include element-shadow();
+				@include checkbox-item-styles($black-d, $white-a, $theme-color-2);
+			}
+
+			ion-item {
+				@include basic-input-style(color($colors, background, base), $black-b, $white-d);
+
+				&:first-of-type {
+					margin-top: 0px;
+				}
+			}
+
+			.section-title {
+				@include segment-introduction($theme-color-2);
+			}
+
+			.form-action-button	{
+				margin: 0px;
+				margin-top: 10px;
+
+				@include call-to-action-button-styles(color($colors, button, base), color($colors, button, contrast));
+			}
+		}
+
+	}
+
+
+}

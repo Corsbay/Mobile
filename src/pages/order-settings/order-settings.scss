@@ -1,0 +1,42 @@
+page-order-settings {
+
+	.order-content{
+		background-color: color($colors, background, base);
+
+		@include basic-input-style($white, $input-color, $white-d);
+		.text-input {
+			padding-right: 5px;
+			text-align: right;
+		}
+
+		.item-title	{
+			font-size: 1.6rem;
+			font-weight: 500;
+			color: $black-b;
+			white-space: pre-line;
+		}
+
+		.price-label {
+			padding: 0px;
+			margin: 0px;
+			color: $theme-color-2;
+			/*font-weight: 00;*/
+			content: " USD";
+		}
+
+		.list-sub-header {
+			font-size: 1.2rem;
+			font-weight: 400;
+			color: $text-color;
+			text-transform: none;
+		}
+
+		.button {
+			@include element-shadow();
+			color: $theme-color-2;
+			background-color: $white;
+		}
+
+	}
+
+}

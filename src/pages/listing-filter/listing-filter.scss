@@ -1,0 +1,9 @@
+page-listing-filter {
+
+	.filter-content {
+		@include basic-list-styles($black-d, $black-a);
+		background-color: $white-a;
+
+	}
+
+}

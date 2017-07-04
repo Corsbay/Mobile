@@ -1,0 +1,139 @@
+listing-form-page {
+	$photos-horizontal-list-padding: 10px;
+
+/*	ion-header {
+		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
+	}*/
+
+	.forms-content	{
+		background-color: $white-a;
+
+		.form-style {
+			@include basic-list-styles($black-d, $black-a);
+			padding-bottom: 20px;
+
+			.form-section	{
+				padding: 0px 14px;
+				padding-bottom: 10px;
+
+				.item:first-child	{
+					margin-top: 10px;
+				}
+
+				.section-title {
+					@include segment-introduction($theme-color-2);
+				}
+
+				.horizontal-photos {
+					height: 140px;
+					width: 100%;
+					padding-bottom: 16px;
+
+
+					preload-image {
+						border-radius: 2%;
+
+						img	{
+							border-radius: 2%;
+						}
+					}
+
+					.photos-row	{
+						&::after{
+							content: '';
+							flex: 0 0 $photos-horizontal-list-padding;
+					    max-width: $photos-horizontal-list-padding;
+						}
+					}
+				}
+
+			}
+
+			.radio-group {
+				background-color: $white;
+				@include element-shadow();
+				@include radio-item-styles($black-c, $white-a, $theme-color-2);
+
+				ion-item {
+					margin-left: 10px;
+					background-color: $white;
+					
+					.listing-type-info {
+						font-size: 1.0rem;
+						color: #ff0033;
+					}
+				}
+			}
+
+			.form-list {
+				/**/
+				/*@include checkbox-item-styles($black-d, transparent, color($colors, button, base));*/
+
+				.button-item {
+					background-color: $white;
+					height: 65px;
+					padding-left: 14px;
+				}
+
+				ion-icon{
+					color: $theme-color-2;
+				}
+
+				.publish-item-group {
+					padding: 16px;
+
+					.text-content{
+						font-size: 1.8rem;
+					}
+				}
+
+				.legal-statement {
+					background-color: transparent;
+					padding-top: 20px;
+					font-size: 1.2rem;
+					color: $white-d;
+				}
+
+			}
+
+			.form-action-button	{
+				margin: 0px;
+				margin-top: 10px;
+
+				@include call-to-action-button-styles(color($colors, button, base), color($colors, button, contrast));
+			}
+
+			.upload-image-button {
+				border-radius: 6px;
+				background-color: $white;
+				color: $white-d;
+				height: 80px;
+				margin: 10px 0px;
+				padding-top: 5px;
+				padding-bottom: 32px;
+				@include element-shadow();
+
+				.button-inner	{
+					@include flex-wrap(wrap);
+
+					ion-icon {
+						flex: 0 0 100%;
+				    max-width: 100%;
+						font-size: 2.2em;
+					}
+
+					.button-title	{
+						flex: 0 0 100%;
+				    max-width: 100%;
+						font-size: 1.4rem;
+						color: $white-d;
+						font-weight: 400;
+						margin: 0px;
+					}
+				}
+			}
+
+		}
+	}
+}
+

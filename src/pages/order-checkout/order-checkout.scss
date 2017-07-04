@@ -1,0 +1,97 @@
+page-order-checkout {
+	@include basic-list-styles($black-d, $black-a);
+
+	.order-content{
+		background-color: color($colors, background, base);
+
+		.text-title {
+			margin: 0px;
+			padding: 0px 0px 10px 0px;
+			font-size: 1.6rem;
+			font-weight: 500;
+			white-space: pre-line;
+		}
+
+		.text-content {
+			font-size: 1.5rem;
+			span {
+				font-weight: 500;
+			}
+		}
+
+		.price-label {
+			padding: 0px;
+			margin: 0px;
+			color: $theme-color-2;
+		}
+
+		.list-sub-header {
+			font-size: 1.2rem;
+			font-weight: 400;
+			color: $text-color;
+			text-transform: none;
+		}
+
+		.checkout-actions {
+			background-color: $white;
+			margin: 0px;
+			padding: 0px;
+
+			.button {
+				margin: 0px;
+				padding: 0px;
+				color: $theme-color-2;
+			}
+		}
+
+	}
+
+	.payment-method {
+		.title-text {
+			font-weight: 700px;
+			color: $theme-color-2;
+		}
+	}
+
+	.delivery-schedule {
+		color: $positive-text;
+		font-weight: 300;
+	}
+
+	.checkout-footer {
+		background-color: $white;
+		padding: 10px;
+		margin: 0px;
+
+			.toolbar {
+				.toolbar-background {
+					background-color: #008080;
+				}
+			}
+
+
+			.footer-text {
+				text-align: left;
+				line-height: 6px;
+				padding: 5px 0 0 5px;
+				margin: 0px;
+			}
+
+			.footer-rate {
+				font-size: 1.0em;
+				margin: 0px;
+				padding: 0px;
+			}
+
+			.checkout-button {
+				@include call-to-action-button-styles(color($colors, button, base), color($colors, button, contrast));
+				padding: 5px 30px 5px 30px;
+				margin: 0px;
+
+				.button-inner	{
+					margin: 0px;
+					padding: 0px;
+				} 
+			}
+	}
+}

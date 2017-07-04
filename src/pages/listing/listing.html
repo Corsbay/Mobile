@@ -1,0 +1,198 @@
+<ion-header class="listing-header">
+  <ion-navbar>
+
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+      <!-- <ion-icon ios="ios-contact" md="md-contact"></ion-icon> -->
+      <!-- <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon> -->
+    </button>
+
+    <ion-title>
+      <div class="header-logo">
+        Corsbay
+        <!-- <preload-image [ratio]="{w:583, h:100}" src="./assets/images/header_logo_white.png"></preload-image> -->
+      </div>
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="filterModalPage()">
+        <ion-icon small name="ios-funnel-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="listing-content">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- (ionInput)="updateSearch($event)" -->
+  <form action=".">
+    <ion-searchbar
+      (ngModel)="search_query"
+      [showCancelButton]="false"
+      (search)="onSearch($event)"
+      placeholder="Search"
+      autocomplete="on"
+      spellcheck="true"
+      debounce="2000"
+      color="light">
+    </ion-searchbar>
+  </form>
+
+  <ion-segment class="segment-bar" [(ngModel)]="segment_topbar">
+    <ion-segment-button class="segment-button" value="Local" (click)="getLocalItems()">
+      Local
+    </ion-segment-button>
+    <ion-segment-button class="segment-button" value="Favorites">
+      Favorites
+    </ion-segment-button>
+    <ion-segment-button class="segment-button" value="Activity">
+      Activity
+    </ion-segment-button>
+    <ion-segment-button class="segment-button" value="Explore" (click)="getItems()">
+      Explore
+    </ion-segment-button>
+  </ion-segment>
+
+<!--   <ion-row>
+    <ion-col width-33 text-center>
+        <button ion-button small icon-only clear no-padding class="action-bar-button" (click)="listingType(0)">
+          Favorites
+        </button>
+    </ion-col>
+    <ion-col width-33 text-center>
+        <button ion-button small icon-only clear no-padding class="action-bar-button"
+        (click)="filterModalPage()" >
+          Activity
+        </button>
+    </ion-col>
+    <ion-col width-33 text-center>
+        <button ion-button small icon-only clear no-padding class="action-bar-button" [class]="active_button[2]" (click)="getLocalItems()">
+          Local
+        </button>
+    </ion-col>
+  </ion-row> -->
+
+
+  <!--<ion-col col-center width-100>
+      <h2 class="main-title">{{listing.banner_title}}</h2>
+    </ion-col> -->
+
+<!--   <h4 class="categories-title">Popular</h4>
+  <ion-scroll scrollX="true" class="horizontal-categories">
+    <ion-row class="categories-row"> -->
+<!--       <ion-col width-30 class="horizontal-item" *ngFor="let popular of items.populars">
+        <preload-image [ratio]="{w:1, h:1}" [src]="popular.image" title="popular.title"></preload-image>
+      </ion-col> -->
+<!--     </ion-row>
+  </ion-scroll> -->
+
+<!--   <ion-row class="grid-categories">
+    <ion-col width-50 class="category-item" *ngFor="let category of categories">
+      <background-image class="category-heading" [src]="category.image" tappable (click)="goToFeed(category)">
+        <ion-row class="heading-row">
+          <ion-col no-padding width-100>
+            <h2 class="category-title">{{category.label}}</h2>
+          </ion-col>
+        </ion-row>
+      </background-image>
+    </ion-col>
+  </ion-row> -->
+
+  <h4 class="categories-title">
+    {{section_title}}
+  </h4>
+
+  <!-- <ion-row class="feed-item"> -->
+
+    <ion-list no-lines>
+      
+      <!-- <ion-card class="item-card-content"> -->
+      <div class="item-card-content" *ngFor="let listing of listings; let index = index ">
+
+        <preload-image [ratio]="{w:4, h:3}" [src]="listing.medias[0].media_path" tappable (click)="listingDetails(index)">
+        </preload-image>
+
+<!--         <preload-image [ratio]="{w:4, h:3}" [src]="listing.medias[0].media_path" tappable
+        (click)="listingDetails(index)">
+        </preload-image> -->
+
+<!--    <ion-slides [options]="slideOptions">
+          <ion-slide *ngFor="let media of listing.medias" style="background-color: white">
+            <preload-image [ratio]="{w:3, h:2}" [src]="media.media_path" title="listing.title"></preload-image>
+          </ion-slide>
+        </ion-slides> -->
+        <ion-badge class="price-badge" item-right>
+          {{ listing.main_price | currency: listing.currency: true:'1.2-2' }}
+        </ion-badge>
+
+        <ion-card-title class="item-title">
+          {{ listing.title }}
+        </ion-card-title>
+
+        <p class="item-text">
+          <span *ngIf="listing.distance">{{ listing.distance | distancePipe: 'miles' }} / </span>
+          {{ listing.measure_unit }}: {{ listing.unit_value }}
+        </p>
+
+<!--         <p class="item-text">
+          
+        </p> -->
+
+        <ion-row class="status-row">
+          <ion-col no-padding width-30 text-center>
+            <rating [ngModel]="listing.total_rate" max="5" read-only="true"></rating>
+          </ion-col>
+          <ion-col no-padding width-40 text-center>
+            <button class="action-button" ion-button clear small icon-left>
+              <ion-icon name='chatbubbles'></ion-icon>
+              {{listing.total_reviews}} Reviews
+            </button>
+          </ion-col>
+          <ion-col no-padding width-30 text-right>
+            <button class="action-button" ion-button clear small icon-left>
+              <ion-icon name='md-share'></ion-icon>
+              Share
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <ion-item item-right class="item-profile">
+          <ion-avatar item-left>
+            <img src="{{listing.seller_profile?.image}}">
+          </ion-avatar>
+          <h2>{{ listing.seller_profile?.com_name }}</h2>
+        </ion-item>
+
+      <!-- </ion-card> -->
+      </div>
+
+    </ion-list>
+
+<!--    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+     <ion-infinite-scroll-content loadingSpinner="dots"
+      loadingText="Loading more data..."></ion-infinite-scroll-content>
+   </ion-infinite-scroll> -->
+
+
+  <!-- </ion-row> -->
+
+  <h4 class="categories-title">Browse categories</h4>
+
+  <ion-row class="grid-categories">
+    <!-- <ion-col width-50 class="category-item" *ngFor="let category of listing.categories">
+      <background-image class="category-heading" [src]="category.image" tappable (click)="goToFeed(category)">
+        <ion-row class="heading-row">
+          <ion-col no-padding width-100>
+            <h2 class="category-title">{{category.title}}</h2>
+          </ion-col>
+        </ion-row>
+      </background-image>
+    </ion-col> -->
+  </ion-row>
+
+</ion-content>

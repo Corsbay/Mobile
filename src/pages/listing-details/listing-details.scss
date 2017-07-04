@@ -1,0 +1,190 @@
+page-listing-details {
+
+	.listing-content{
+		background-color: color($colors, background, base);
+
+		.item-card-content {
+			@include basic-card-styles($black-d);
+			/*position: relative;*/
+			margin-bottom: 5px;
+
+			.item-profile {
+				background: $white-a;
+			}
+
+			.item-title {
+				font-size: 1.8rem;
+				font-weight: 600;
+				padding: 0px;
+			}
+
+			.delivery_options {
+				background-color: transparent;
+				color: $black-b;
+				text-align: center;
+				margin-top: 10px;
+				padding: 0px;
+			}
+
+			.item-price {
+				/*background-color: red;*/
+			  font-size: 1.6rem;
+			  font-weight: 500;
+			  margin: 0px;
+			  padding: 10px 0px 0px 0px;
+			}
+
+			.question-button {
+				/*background-color: red;*/
+				font-size: 1.6rem;
+				color: $theme-color-2;
+				padding: 5px 1px 0px 1px;
+				margin: 0px;
+			}
+
+			.slide-action-button {
+			  background: transparent;
+			  opacity: 0.8;
+		  	color: $theme-color-2;
+
+			  ion-icon {
+			  	font-size: 3.0rem;
+			  }
+			}
+
+		}
+
+		ion-list {
+			@include basic-list-styles($black-d, $black-a);
+
+			.content-title {
+				color: $black-b;
+				padding-top: 10px;
+			}
+
+			.content-text {
+				margin: 0px;
+				padding-left: 10px;
+				white-space: pre-line;
+			}
+
+			.map-location {
+				height: 220px;
+				background: $white-b;
+
+				#map{
+					height: 280px;
+					width: 100%;
+				}
+			}
+
+			.reviews-button-rate {
+				.rating-icon {
+					margin-bottom: 6px;
+				}
+			}
+
+			/* Shedule list*/
+			.schedule-data {
+				background-color: $white;
+				padding: 0px 14px;
+
+				.data-item {
+					@include display(flex);
+					@include align-items(center);
+					@include justify-content(space-between);
+
+					.item-content	{
+						flex: 0 0 90%;
+				    max-width: 90%;
+						padding-right: 5px;
+
+						.title-icon	{
+							color: $theme-color-2;
+							flex: 0 0 12%;
+					    max-width: 12%;
+							padding-right: 2px;
+							font-size: 1.8rem;
+							text-align: left;
+						}
+
+						.item-title	{
+							font-size: 1.6rem;
+							font-weight: 400;
+							letter-spacing: 0.2px;
+							color: $theme-color-2;
+							margin-bottom: 0px;
+
+						}
+
+						.item-description	{
+							margin-bottom: 0px;
+							@include display(flex);
+							@include align-items(center);
+							@include justify-content(space-between);
+
+							&:last-child {
+								margin: 0px;
+							}
+
+							.description-label{
+								font-weight: 400;
+							}
+
+							.description-text	{
+								flex: 0 0 88%;
+						    max-width: 88%;
+								white-space: normal;
+								font-size: 1.5rem;
+								line-height: 1.4;
+								letter-spacing: 0.2px;
+								color: $black-c;
+							}
+						}
+
+					}
+				}
+			}
+				
+		}
+
+	}
+
+	.listing-detail-footer {
+		background-color: $white;
+		padding: 0px;
+		margin: 0px;
+
+		.footer-row{
+			height: 55px;
+			padding-top: 4px;
+
+			.footer-text {
+				font-size: 1.6rem;
+				font-weight: 500;
+				text-align: left;
+				padding: 8px 0px 0px 5px;
+				margin: 0px;
+			}
+
+			.footer-rate {
+				font-size: 1.0em;
+				margin: 0px;
+				padding: 0px;
+			}
+
+			.button-order {
+				@include call-to-action-button-styles(color($colors, button, base), color($colors, button, contrast));
+				padding: 5px 30px 5px 30px;
+				margin: 0px;
+
+				.button-inner	{
+					margin: 0px;
+					padding: 0px;
+				} 
+			}
+		}
+		
+	}
+
+}

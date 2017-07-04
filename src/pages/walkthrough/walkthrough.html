@@ -1,0 +1,92 @@
+<ion-header class="walkthrough-header">
+  <ion-toolbar>
+    <ion-buttons end>
+      <button ion-button class="skip-button" (click)="skipIntro()" [hidden]="lastSlide">Skip</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="walkthrough-content">
+
+  <ion-slides #slider (ionSlideDidChange)="onSlideChanged()" pager="true">
+    <ion-slide class="slide-1">
+
+      <ion-row class="intro-image-row">
+        <ion-col center width-64 no-padding>
+          <preload-image [ratio]="{w:6, h:6}" src="./assets/images/Corsbay-mascot-v1.2.png" title="Corsbay"></preload-image>
+        </ion-col>
+      </ion-row>
+
+      <h2 class="main-title">
+        Welcome to
+      </h2>
+      <h2 class="main-title">Corsbay</h2>
+
+      <h3 class="intro-text">
+       A place to buy and sell using exclusively cryptocurrencies!
+      </h3>
+
+    </ion-slide>
+
+    <ion-slide class="slide-2">
+      <ion-row class="intro-image-row">
+        <ion-col center width-64 no-padding>
+          <preload-image [ratio]="{w:1, h:1}" src="./assets/images/slide-2-img.png" alt="slide 2 img" title="Corsbay"></preload-image>
+        </ion-col>
+      </ion-row>
+
+        <h3 class="main-title">
+          A marketplace Powered by block chain technology
+        </h3>
+        <p class="intro-text">
+          Corsbay offers you a simple and safe way buy and sell using cryptocurrencies.
+        </p>
+
+<!--         <p class="intro-text">
+           The most safe currency system in the world and with the cheapest fees in the market, corsbay offers you symplicity and conviniency to make business and help the cryptocurrency revolution!
+        </p> -->
+
+    </ion-slide>
+
+    <ion-slide class="slide-3">
+      <ion-row class="intro-image-row">
+        <ion-col center width-64 no-padding>
+          <preload-image [ratio]="{w:1, h:1}" src="./assets/images/slide-3-img.png" title="Corsbay"></preload-image>
+        </ion-col>
+      </ion-row>
+
+        <h2 class="main-title">
+          You own your money
+        </h2>
+        <p class="intro-text">
+          Want to buy from everywhere without complications?
+        </p>
+        <p class="intro-text">
+          Use the most safe and cheap method. Cryptocurrencies.
+        </p>
+
+
+    </ion-slide>
+
+    <ion-slide class="slide-4">
+      <ion-row class="intro-image-row">
+        <ion-col center width-64 no-padding>
+          <preload-image [ratio]="{w:1, h:1}" src="./assets/images/slide-4-img.png" alt="slide 4 img" title="Corsbay"></preload-image>
+        </ion-col>
+      </ion-row>
+      <h2 class="main-title">Let's Start!</h2>
+      <p class="intro-text">
+        Log in to your account.
+      </p>
+<!--       <p class="intro-text">
+        We are ready to rock!
+      </p> -->
+      <div class="button-bar">
+        <button ion-button primary (click)="goToLogin()">Log in</button>
+        <button ion-button primary (click)="goToSignup()">Sign up</button>
+      </div>
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>

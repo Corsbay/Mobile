@@ -1,0 +1,82 @@
+// These are the forms and layout lists
+@mixin basic-list-styles($text-color, $icon-color){
+	margin-bottom: 2px;
+
+	ion-list-header {
+		/*background-color: color($colors, background, base);*/
+		background-color: transparent !important;
+		padding: 18px 0px 0px 15px !important;
+		/*margin: 20px 0px 0px 0px;*/
+
+		ion-label {
+			color: $black;
+			font-weight: 500;
+		}
+	}
+
+	ion-item-divider {
+		background-color: color($colors, background, base);
+		/*transparent !important;*/
+		padding: 4px 0px 2px 15px !important;
+		margin: 0px;
+
+		ion-label, p {
+			color: $black;
+			font-size: 1.5rem;
+			font-weight: 500;
+			/*text-transform: uppercase;*/
+		}
+	}
+
+	ion-item {
+		font-size: 1.6rem;
+	}
+
+	.list-item {
+		/*background-color: $white;*/
+		/*@include element-shadow();*/
+		
+
+		.item-inner	{
+			/*border: none;*/
+			background: none;
+			padding: 0px;
+
+			ion-label {
+				margin: 0px;
+
+				.item-title	{
+					font-size: 1.6rem;
+					letter-spacing: 1px;
+					color: $text-color;
+					margin: 0px;
+					display: inline-block;
+				}
+
+				.item-note	{
+					font-size: 1.4rem;
+					letter-spacing: 1px;
+					color: $text-color;
+					margin: 0px;
+					margin-left: 4px;
+					display: inline-block;
+				}
+			}
+		}
+
+		.item-content {
+			@include align-self(center);
+		}
+
+		.item-icon {
+			text-align: right;
+			color: $icon-color;
+
+			ion-icon {
+				font-size: 2.0em;
+			}
+		}
+
+
+	}
+}

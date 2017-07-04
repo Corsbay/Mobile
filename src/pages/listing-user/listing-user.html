@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>My Listing</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="list-content" scroll="false">
+
+  <section class="add-button-section">
+    <button ion-button class="add-button" block large (click)="addListing()">
+      <ion-icon name="md-add" large></ion-icon>
+      <h3 class="button-title">List a product</h3>
+    </button>
+  </section>
+
+  <ion-list>
+	  <ion-list-header>
+	    Listed
+	  </ion-list-header>
+
+    <button ion-item class="item-content" *ngFor="let listing of listings" (click)="editListing(listing.key)">
+      <ion-thumbnail item-left large>
+        <preload-image [ratio]="{w:1, h:1}" [src]="listing?.medias[0].media_path"></preload-image>
+      </ion-thumbnail>
+      <h3 class="item-title">{{listing.title}}</h3>
+      <p class="item-price"> {{listing.price.currency}} {{listing.price.main_price}}</p>
+    </button>
+
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Drafts
+    </ion-list-header>
+
+    <button ion-item class="item-content" *ngFor="let draft of drafts" (click)="editListing(draft.key)">
+      <ion-thumbnail item-left large>
+        <preload-image [ratio]="{w:1, h:1}" [src]="draft?.medias[0].media_path"></preload-image>
+      </ion-thumbnail>
+      <h3 class="item-title">{{draft.title}}</h3>
+      <p class="item-price"> {{draft.price.currency}} {{draft.price.main_price}}</p>
+    </button>  
+
+
+<!--     <button class="list-item" ion-item  (click)="editListing(listing.key)">
+      <ion-row no-padding class="content-row">
+        <ion-col no-padding width-33 class="item-avatar">
+          <preload-image [ratio]="{w:1, h:1}" [src]="listing?.medias[0].media_path"></preload-image>
+        </ion-col>
+        <ion-col no-padding width-77 class="item-content">
+          <h3 class="item-title">{{listing.title}}</h3>
+          <p class="item-description" rows="3">{{listing.summary}}</p>
+          <p class="item-price"> {{listing.price.currency}} {{listing.price.main_price}}</p>
+        </ion-col>
+      </ion-row>
+    </button> -->
+  </ion-list>
+</ion-content>

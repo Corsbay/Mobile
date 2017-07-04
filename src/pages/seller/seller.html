@@ -1,0 +1,119 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+      <!-- <ion-icon ios="ios-contact" md="md-contact"></ion-icon> -->
+      <!-- <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon> -->
+    </button>
+    <ion-title>Seller Dash</ion-title>
+    
+    <ion-buttons end>
+      <button ion-button icon-only (click)="setSeller()">
+        <ion-icon small name="ios-settings-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="seller-content">
+
+
+  <section class="add-button-section">
+    <button ion-button class="add-button" block large (click)="addListing()">
+      <h3 class="button-title">List a product</h3>
+    </button>
+  </section>
+
+	<ion-list class="balance-content">
+		<ion-item no-lines text-wrap class="stats-item">
+			<h1 text-center class="balance-value"> $ 2879 </h1>
+			<p text-center>30 days balance</p>
+			<p text-center> 
+			 <button ion-button clear>Selling Activity</button>
+			</p>
+		</ion-item>
+
+		<ion-segment [ngModel]="segment_list" class="segment-list">
+		  <ion-segment-button value="orders" (ionSelect)="showList('orders')">
+        Orders
+      </ion-segment-button>
+	    <ion-segment-button value="listing" (ionSelect)="showList('listing')">
+       	Listing
+      </ion-segment-button>
+    </ion-segment>
+	</ion-list>
+
+
+	<ion-list [ngSwitch]="segment_list">
+
+		<ion-item-group *ngSwitchCase="'orders'">
+			<ion-list-header>
+				Open Orders
+			</ion-list-header>
+	    <button ion-item class="item-content" *ngFor="let order of orders; let index=index" (click)="orderSettings(index)">
+	      <ion-thumbnail item-left large>
+	        <preload-image [ratio]="{w:1, h:1}" [src]="order.listing_snapshot?.medias[0].media_path"></preload-image>
+	      </ion-thumbnail>
+	      <h3 class="item-title">{{order.listing_snapshot.title}}</h3>
+	      <p>Delivery Option: <span>{{ order.delivery_option}}</span></p>
+	     	<p>Order time: <span>{{ order.created_at | momentPipe: ['MMM DD YYYY hh:mm a', 'timestamp'] }}</span></p>
+	      <!-- <p>Expect Delivery: <span>{{ order.delivery_schedule | momentPipe: ['ddd hh:mm a', 'timestamp'] }}</span></p> -->
+<!-- 	      <p class="item-price">
+	      	{{order.invoice.total_price | currency: order.invoice.currency: true:'1.2-2'}}
+	      </p> -->
+	    </button>
+	  </ion-item-group>
+
+	 	<ion-item-group *ngSwitchCase="'orders'">
+			<ion-list-header>Confirmed Orders</ion-list-header>
+	    <ion-item>
+	    	None
+	    </ion-item>
+	    
+			<ion-list-header>Finished Orders</ion-list-header>
+	    <ion-item>
+	    	None
+	    </ion-item>
+
+	    <ion-list-header>Canceled Orders</ion-list-header>
+	    <ion-item>
+	    	None
+	    </ion-item>
+		</ion-item-group>
+
+		<ion-item-group *ngSwitchCase="'listing'">
+		  <ion-list-header>
+		    Active Listing
+		  </ion-list-header>
+
+	    <button ion-item class="item-content" *ngFor="let listing of listings" (click)="editListing(listing.key)">
+	      <ion-thumbnail item-left large>
+	        <preload-image [ratio]="{w:1, h:1}" [src]="listing?.medias[0].media_path"></preload-image>
+	      </ion-thumbnail>
+	      <h3 class="item-title">{{listing.title}}</h3>
+	      <p class="item-price"> {{listing.price.main_price | currency: listing.currency: true:'1.2-2'}}</p>
+	    </button>
+
+<!-- 	    <ion-list-header>
+	      Drafts
+	    </ion-list-header> -->
+	    <ion-list-header>
+	    	Drafts
+	    </ion-list-header>
+
+	    <button ion-item class="item-content" *ngFor="let draft of drafts" (click)="editListing(draft.key)">
+	      <ion-thumbnail item-left large>
+	        <preload-image [ratio]="{w:1, h:1}" [src]="draft?.medias[0].media_path"></preload-image>
+	      </ion-thumbnail>
+	      <h3 class="item-title">{{draft.title}}</h3>
+	      <p class="item-price"> {{draft.price.main_price | currency: draft.price.currency: true:'1.2-2'}}</p>
+	    </button>
+	  </ion-item-group>
+
+	</ion-list>
+
+</ion-content>

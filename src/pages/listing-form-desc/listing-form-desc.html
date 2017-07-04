@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="cancel()">
+        Cancel
+      </button>
+    </ion-buttons>
+    <ion-title>Describe your listing</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="save()">
+        Save
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="form-content">
+	<section class="form-section">
+    <h2 class="section-title">
+      <p>Good!!  Now give your costumers more details about your listing.</p>
+      <p>A clear title and a good summary make your dish more atractive to the customers!!!</p>
+    </h2>
+  </section>
+  <form class="form-style" [formGroup]="formDescription">
+    <ion-item>
+      <!-- floating -->
+      <ion-label stacked >Title</ion-label>
+      <ion-input type="text" autocomplete="true" maxlength="32" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked >Summary</ion-label>
+      <ion-textarea rows="4" formControlName="summary" maxlength="300"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked >Description</ion-label>
+      <ion-textarea rows="14" formControlName="description" maxlength="800"></ion-textarea>
+    </ion-item>
+  </form>
+</ion-content>

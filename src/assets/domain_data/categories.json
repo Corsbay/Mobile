@@ -1,0 +1,53 @@
+{
+	"categories":	[
+		{
+			"category": "Eletronics",
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		},
+		{
+			"category": "Entertainment",
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		},
+		{
+			"category": "Motors",
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		},
+		{
+			"category": "Fashio",
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+			
+		},
+		{
+			"category": "Home",
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		},
+		{
+			"category": "Sports",
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		},
+		{
+			"category": "Children",
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		},
+		{
+			"category": "Other",
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		}
+	]
+}

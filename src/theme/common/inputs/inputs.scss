@@ -1,0 +1,73 @@
+@mixin basic-input-style($background, $color, $placeholder-color){
+	&.item {
+		padding: 0px;
+		background-color: $background;
+
+		ion-icon{
+			color: $theme-color-2;
+		}
+
+		.item-inner	{
+			padding-left: 16px;
+			/*color: $color;*/
+		}
+
+		.text-input	{
+			font-size: 1.5rem;
+			margin-right: 0px;
+			margin-left: 0px;
+			width: 100%;
+			padding: 0px;
+			color: $color;
+			@include placeholder {
+				color: $placeholder-color;
+			}
+		}
+
+		input[type="number"] {
+			padding-right: 10px;
+		}
+
+		.item-textarea	{
+			font-size: 1.6rem;
+			color: $color;
+
+			@include placeholder {
+				color: $placeholder-color;
+			}
+		}
+
+		&.item-label {
+			margin: 0px;
+			font-size: 1.6rem;
+			color: $black-c;
+			margin: 0px;
+		}
+
+		&.item-label-floating{
+			margin-top: 0px;
+			ion-label {
+				color: $black-c;
+			}
+		}
+
+		&.item-label-stacked {
+			margin-top: 0px;
+			ion-label {
+				font-size: 1.6rem;
+				color: $black-c;
+			}
+		}
+
+	}
+}
+
+@import "./range";
+@import "./checkbox";
+@import "./radio";
+@import "./checkbox-tags";
+@import "./radio-tags";
+@import "./switcher";
+@import "./counter";
+@import "./rating";
+@import "./color-radio";
