@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
-import { BaseProvider } from '../../app/base.provider';
+import { BaseService } from '../../providers/base.service';
 import { ListingService } from '../../providers/listing.service';
 import { OrderService } from '../../providers/order.service';
 
@@ -31,7 +31,7 @@ export class SellerPage {
   	public nav: NavController,
   	public params: NavParams,
   	public loadingCtrl: LoadingController,
-    public BaseApp: BaseProvider,
+    public BaseApp: BaseService,
     public listingService: ListingService,
     public orderService: OrderService
   ) {}

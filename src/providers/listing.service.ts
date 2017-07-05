@@ -183,6 +183,7 @@ export class ListingService {
   getMeasureUnits() {
     let measure_units = [
       { label: "Units", short: "unt", value: "Units"},
+      { label: "Pair", short: "pr", value: "Pair"},
       { label: "Kilograms", short: "kg", value: "Kilograms"},
       { label: "Grams", short: "g", value: "Grams"},
       { label: "Pounds", short: "lb", value: "Pounds"},
@@ -201,35 +202,9 @@ export class ListingService {
   */
   getListingCategories(){
     let categories = [
-      {label:"Chicken", value:"Chicken", checked: false},
-      {label:"Beef", value:"Beef", checked: false},
-      {label:"Fish", value:"Fish", checked: false},
-      {label:"Seafood", value:"Seafood", checked: false},
-      {label:"Salad", value:"Salad", checked: false},
-      {label:"Spice", value:"Spice", checked: false},
-      {label:"Herbs", value:"Herbs", checked: false},
-      {label:"Vegetables", value:"Vegetables", checked: false},
-      {label:"Pasta", value:"Pasta", checked: false},
-      {label:"Soup", value:"Soup", checked: false},
-      {label:"Sandwich", value:"Sandwich", checked: false},
-      {label:"Brad", value:"Brad", checked: false},
-      {label:"Cake", value:"Cake", checked: false},
-      {label:"France", value:"France", checked: false},
-      {label:"Italian", value:"Italian", checked: false},
-      {label:"Purtuguese", value:"Purtuguese", checked: false},
-      {label:"Indian", value:"Indian", checked: false},
-      {label:"Brazilian", value:"Brazilian", checked: false},
-      {label:"Greek", value:"Greek", checked: false},
-      {label:"Mexican", value:"Mexican", checked: false},
-      {label:"Thay", value:"Thay", checked: false},
-      {label:"Japanese", value:"Japanese", checked: false},
-      {label:"Chinese", value:"Chinese", checked: false},
-      {label:"Light", value:"Light", checked: false},
-      {label:"Diet", value:"Diet", checked: false},
-      {label:"Vegetarian", value:"Vegetarian"},
-      {label:"Vegan", value:"Vegan", checked: false},
-      {label:"Exotic food", value:"Exotic food", checked: false},
-      {label:"Global", value:"Global", checked: false}
+      {label:"Eletronics", value:"Eletronics", checked: false},
+      {label:"Mobile", value:"Mobile", checked: false},
+
     ];
 
     return categories;

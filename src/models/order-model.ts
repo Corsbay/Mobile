@@ -2,14 +2,14 @@
 export class OrderModel{
   listing_snapshot: any;
 
-  delivery_option: string = "";
-  delivery_address: any;
+  shipping_option: string = "";
+  shipping_address: any;
 
   quantity: number = 1;
   subtotal: number = 0.00;
   total_price: number = 0.00;
-  delivery_fee: number = 0.00;
-  delivery_schedule: number;
+  shipping_fee: number = 0.00;
+  shipping_schedule: number;
 
   invoice: InvoiceModel;
 
@@ -36,7 +36,6 @@ export class InvoiceModel {
   quantity: number = 1;
   subtotal: number = 0.00;
   tax: number = 0.00;
-  delivery_fee: number;
   shipping_fee: number;
   total_price: number = 0.00;
 }

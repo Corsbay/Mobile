@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import 'rxjs/Rx';
 
 import { ProfileService } from '../../providers/profile.service';
-import { BaseProvider } from '../../app/base.provider';
+import { BaseService } from '../../providers/base.service';
 import { MediaService } from '../../providers/media.service';
 
 import { ProfileModel } from '../../models/profile-model';
@@ -31,7 +31,7 @@ export class ProfileFormPage {
     public nav: NavController,
     public modal: ModalController,
     public loadingCtrl: LoadingController,
-    public BaseApp: BaseProvider,
+    public BaseApp: BaseService,
     public profileService: ProfileService,
     public mediaService: MediaService,
     public actionSheetCtrl: ActionSheetController

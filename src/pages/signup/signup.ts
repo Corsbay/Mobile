@@ -4,7 +4,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 import { AuthService } from '../../providers/auth.service';
 import { ProfileService } from '../../providers/profile.service';
-import { BaseProvider } from '../../app/base.provider';
+import { BaseService } from '../../providers/base.service';
 
 import { ListingPage } from '../listing/listing';
 import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
@@ -25,7 +25,7 @@ export class SignupPage {
 
   constructor(
     public nav: NavController,
-    public BaseApp: BaseProvider,
+    public BaseApp: BaseService,
     public modal: ModalController,
     private _auth: AuthService,
     private _profile: ProfileService

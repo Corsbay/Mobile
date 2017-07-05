@@ -14,7 +14,7 @@ import { FollowersPage } from '../followers/followers';
 import 'rxjs/Rx';
 
 import { ProfileModel } from '../../models/profile-model';
-import { BaseProvider } from '../../app/base.provider';
+import { BaseService } from '../../providers/base.service';
 import { ProfileService } from '../../providers/profile.service';
 
 @Component({
@@ -35,7 +35,7 @@ export class ProfilePage {
     public menu: MenuController,
     public nav: NavController,
     public navParams: NavParams,
-    public BaseApp: BaseProvider,
+    public BaseApp: BaseService,
     public profileService: ProfileService,
     public sellerService: SellerService,
     public loadingCtrl: LoadingController

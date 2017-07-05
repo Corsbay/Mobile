@@ -25,8 +25,8 @@
 	        </ion-col>
 		    	<ion-col widht-70>
 		    		<p class="text-title" text-left>{{ order.listing_snapshot.title }}</p>
-		    		<p class="text-content">Delivery Option:	<span> {{ order.delivery_option }}</span></p>
-				    <p class="text-content">Ets. Delivery: <span>{{ order.delivery_schedule | momentPipe: 'to' }}</span></p>
+		    		<p class="text-content">Delivery Option:	<span> {{ order.shipping_option }}</span></p>
+				    <p class="text-content">Ets. Delivery: <span>{{ order.shipping_schedule | momentPipe: 'to' }}</span></p>
 		    	</ion-col>
 		    </ion-row>
 		  </ion-item>
@@ -73,7 +73,7 @@
 	  	<ion-item *ngIf="showDeliveryFee">
 	  		<h2 item-start>Delivery Fee: </h2>
 	  		<h2 item-content class="price-label">
-		    	{{ order.invoice.delivery_fee | currency: order.invoice.currency: true:'1.2-2'}}
+		    	{{ order.invoice.shipping_fee | currency: order.invoice.currency: true:'1.2-2'}}
 		    </h2>
 	  	</ion-item>
 	  	<ion-item>
@@ -93,7 +93,7 @@
 	    </ion-list-header>
 	    <ion-item>
 	    	<h2>Est. Delivery</h2>
-	    	<h2 class="delivery-schedule">{{ order.delivery_schedule | momentPipe: ['LLLL', 'timestamp'] }}</h2>
+	    	<h2 class="delivery-schedule">{{ order.shipping_schedule | momentPipe: ['LLLL', 'timestamp'] }}</h2>
 	    </ion-item>
 		</ion-item-group> -->
 
@@ -104,12 +104,12 @@
 	    		Your address will be shown only after confirmed
 	    	</div>
 	    </ion-list-header>
-	    <ion-item *ngIf="order.delivery_address?.primary" class="address-primary">
-	      <h2 class="address-title">{{ order.delivery_address?.full_name }}</h2>
-	      <p>{{ order.delivery_address?.street_1 }}</p>
-	      <p>{{ order.delivery_address?.city }}, {{ order.delivery_address?.state }} {{ order.delivery_address?.zip_code }}</p>
-	      <p>{{ order.delivery_address?.country }}</p>
-	      <!-- <h2 item-right *ngIf="order.delivery_address?.primary">Primary</h2> -->
+	    <ion-item *ngIf="order.shipping_address?.primary" class="address-primary">
+	      <h2 class="address-title">{{ order.shipping_address?.full_name }}</h2>
+	      <p>{{ order.shipping_address?.street_1 }}</p>
+	      <p>{{ order.shipping_address?.city }}, {{ order.shipping_address?.state }} {{ order.shipping_address?.zip_code }}</p>
+	      <p>{{ order.shipping_address?.country }}</p>
+	      <!-- <h2 item-right *ngIf="order.shipping_address?.primary">Primary</h2> -->
 	    </ion-item>
 	  </ion-item-group>
 

@@ -77,19 +77,11 @@ export class ListItemService {
 	    item.description = draft.description;
 	    item.privacity = draft.privacity;
 
-	    item.carryout = draft.carryout;
-	    item.delivery  = draft.delivery;
-	    item.delivery_fee = draft.delivery_fee;
-      item.delivery_processing_time = draft.delivery_processing_time;
-      item.delivery_policies = draft.delivery_policies
-
-	    item.shipping = draft.shipping;
 	    item.shipping_fee = draft.shipping_fee;
       item.shipping_processing_time = draft.shipping_processing_time;
       item.refund_policies = draft.refund_policies;
       item.cancellation_policies = draft.cancellation_policies;
       item.additional_policies = draft.additional_policies;
-
 
 	    item.measure_unit = draft.measure_unit;
 	    item.unit_value = draft.unit_value;

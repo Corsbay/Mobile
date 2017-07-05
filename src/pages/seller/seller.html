@@ -59,9 +59,9 @@
 	        <preload-image [ratio]="{w:1, h:1}" [src]="order.listing_snapshot?.medias[0].media_path"></preload-image>
 	      </ion-thumbnail>
 	      <h3 class="item-title">{{order.listing_snapshot.title}}</h3>
-	      <p>Delivery Option: <span>{{ order.delivery_option}}</span></p>
+	      <p>Delivery Option: <span>{{ order.shipping_option}}</span></p>
 	     	<p>Order time: <span>{{ order.created_at | momentPipe: ['MMM DD YYYY hh:mm a', 'timestamp'] }}</span></p>
-	      <!-- <p>Expect Delivery: <span>{{ order.delivery_schedule | momentPipe: ['ddd hh:mm a', 'timestamp'] }}</span></p> -->
+	      <!-- <p>Expect Delivery: <span>{{ order.shipping_schedule | momentPipe: ['ddd hh:mm a', 'timestamp'] }}</span></p> -->
 <!-- 	      <p class="item-price">
 	      	{{order.invoice.total_price | currency: order.invoice.currency: true:'1.2-2'}}
 	      </p> -->

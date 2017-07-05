@@ -31,9 +31,9 @@
         <ion-col widht-70>
           <h2 text-left>{{ order.listing_snapshot.title }}</h2>
           <h2 text-left>Quantity: {{ order.quantity }}</h2>
-          <h2 text-left *ngIf="show_delivery_fee">
+          <h2 text-left *ngIf="show_shipping_fee">
             <!-- Implemente currency pipi!! -->
-            {{ order.listing_snapshot.delivery_fee | currency: order.listing_snapshot.currency: true:'1.2-2' }}
+            {{ order.listing_snapshot.shipping_fee | currency: order.listing_snapshot.currency: true:'1.2-2' }}
           </h2>
           <div class="price-label" item-right>
             <!-- Implemente currency pipi!! -->

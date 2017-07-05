@@ -12,7 +12,7 @@ export class OrderPaymentPage {
 
 	public order: any;
 	public order_key: string;
-  public show_delivery_fee: boolean = false;
+  public show_shipping_fee: boolean = false;
 
   constructor(
     public appCtrl: App,
@@ -25,11 +25,11 @@ export class OrderPaymentPage {
   	this.order = this.params.get('order');
   	this.order_key = this.params.get('order_key');
 
-    if(this.order.delivery_option == "Delivery") {
+    if(this.order.shipping_option == "Delivery") {
       // this.shipping_address = true;
-      this.show_delivery_fee = true;
+      this.show_shipping_fee = true;
     }else{
-      this.show_delivery_fee = false;
+      this.show_shipping_fee = false;
       // this.carryout_address = true;
     }
   }

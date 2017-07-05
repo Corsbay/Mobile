@@ -3,7 +3,7 @@ import { Events, ViewController, NavController, LoadingController } from 'ionic-
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 import { AuthService } from '../../providers/auth.service';
-import { BaseProvider } from '../../app/base.provider';
+import { BaseService } from '../../providers/base.service';
 
 import { ListingPage } from '../listing/listing';
 import { SignupPage } from '../signup/signup';
@@ -22,7 +22,7 @@ export class LoginPage {
   constructor(
     public events: Events,
     private _auth: AuthService,
-    public BaseApp: BaseProvider,
+    public BaseApp: BaseService,
     public viewCtrl: ViewController,
     public nav: NavController,
     public loadingCtrl: LoadingController

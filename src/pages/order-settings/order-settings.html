@@ -23,8 +23,8 @@
 	    	<ion-col widht-70>
 	    		<h2 text-left class="item-title">{{ order.listing_snapshot.title }}</h2>
 			    <h2 text-left>Quantity: {{ order.invoice.quantity }}</h2>
-			    <h2 text-left *ngIf="show_delivery_fee">
-			    	{{ order.invoice.delivery_fee | currency: order.invoice.currency: true:'1.2-2' }}
+			    <h2 text-left *ngIf="show_shipping_fee">
+			    	{{ order.invoice.shipping_fee | currency: order.invoice.currency: true:'1.2-2' }}
 			    </h2>
 			    <div class="price-label" item-right>
 			    	Price:{{ order.invoice.subtotal | currency: order.invoice.currency: true:'1.2-2' }}
@@ -66,12 +66,12 @@
     </ion-item-group>
 
 	  <ion-item-divider>Client Address</ion-item-divider>
-  	<ion-item *ngIf="order.delivery_address?.primary" class="address-primary">
-      <h2 class="address-title">{{ order.delivery_address?.full_name }}</h2>
-      <p>{{ order.delivery_address?.street_1 }}</p>
-      <p>{{ order.delivery_address?.city }}, {{ order.delivery_address?.state }} {{ order.delivery_address?.zip_code }}</p>
-      <p>{{ order.delivery_address?.country }}</p>
-      <!-- <h2 item-right *ngIf="order.delivery_address?.primary">Primary</h2> -->
+  	<ion-item *ngIf="order.shipping_address?.primary" class="address-primary">
+      <h2 class="address-title">{{ order.shipping_address?.full_name }}</h2>
+      <p>{{ order.shipping_address?.street_1 }}</p>
+      <p>{{ order.shipping_address?.city }}, {{ order.shipping_address?.state }} {{ order.shipping_address?.zip_code }}</p>
+      <p>{{ order.shipping_address?.country }}</p>
+      <!-- <h2 item-right *ngIf="order.shipping_address?.primary">Primary</h2> -->
     </ion-item>
 	</ion-list>
 

@@ -54,9 +54,9 @@ export class ListingOrderPage {
   	this.formOrder = new FormGroup({
       quantity: new FormControl(1, Validators.required),
       total_price: new FormControl(0.00, Validators.required),
-      delivery_option: new FormControl('', Validators.required),
-      delivery_schedule: new FormControl(''),
-      delivery_time: new FormControl(''),
+      shipping_option: new FormControl('', Validators.required),
+      shipping_schedule: new FormControl(''),
+      shipping_time: new FormControl(''),
       schedule_day: new FormControl(''),
       schedule_time: new FormControl({value: '', disabled: true})
     });
@@ -82,14 +82,7 @@ export class ListingOrderPage {
       }
     }
 
-    if(this.listing.delivery) {
-      this.formOrder.patchValue({delivery_option: "Delivery"});
-    }else if(this.listing.carryout){
-      this.formOrder.patchValue({delivery_option: "Carryout"});
-    }else{
-      this.formOrder.patchValue({delivery_option: "Shipping"});
-    }
-
+    this.formOrder.patchValue({shipping_option: "Shipping"});
   }
 
   /**
@@ -97,8 +90,6 @@ export class ListingOrderPage {
   */
   ionViewDidLoad() {
     this.setSubtotal(1);
-    // Set the date availability to schedule
-    this.setItinerary();
   }
 
   /**
@@ -128,7 +119,7 @@ export class ListingOrderPage {
     this.invoice.quantity = quantity;
     this.invoice.subtotal = (this.listing.main_price * quantity);
     // Add delivery fee if there is a delivery fee
-    this.setInvoice(this.formOrder.value.delivery_option);
+    this.setInvoice(this.formOrder.value.shipping_option);
   }
 
   /**
@@ -140,10 +131,7 @@ export class ListingOrderPage {
     this.invoice.tax = parseFloat(Number(this.invoice.subtotal * 0.07).toPrecision(4));
     var subtotal: number = this.invoice.subtotal + this.invoice.tax;
 
-    if(opt == "Delivery"){
-      this.invoice.total_price = subtotal + parseFloat(this.listing.delivery_fee);
-      this.invoice.delivery_fee = parseFloat(this.listing.delivery_fee);
-    }else if(opt == "Shipping"){
+    if(opt == "Shipping"){
       this.invoice.total_price = subtotal + parseFloat(this.listing.shipping_fee);
       this.invoice.shipping_fee = parseFloat(this.listing.shipping_fee);
     }else{
@@ -174,75 +162,6 @@ export class ListingOrderPage {
   /**
   *
   */
-  setScheduleDelivery() {
-    console.log("do something dude!");
-  }
-
-
-  /** 
-  * Set the available dates and range of time from 
-  * the listing schedule with the next 30 days
-  */
-  setItinerary() {
-    // User a service method to return the available days within the next 30 days.
-    this.availableDays = this.orderService.setItinerary(this.listing.schedule);
-
-    console.log(this.availableDays);
-
-    //set the minimum date parammeter
-    let firstDay = this.availableDays[0].moment;
-    this.dateMin = firstDay.format("YYYY-MM-DD");
-    //set the maximum date parammeter
-    let lastDay = this.availableDays[this.availableDays.length - 1].moment;
-    this.dateMax = lastDay.format("YYYY-MM-DD");
-
-
-    this.availableDays.forEach((day) => {
-      // Check if is available for the current day
-      // and apply the estimated delivery time
-      if(moment().format("YYYY-MM-DD") == day.moment.format("YYYY-MM-DD")){
-        this.isAvailableToday = true;
-        // Add the avarage ride time
-        this.takeToday = moment().add(30, 'm');
-        // Add the processing product processing time from the listing object
-        this.takeToday.add(this.listing.delivery_processing_time, 'm');
-        // Set Today ASAP as default option
-        this.formOrder.patchValue({delivery_schedule: 'asap'});
-      }
-
-      // set the month range
-      let month = day.moment.format("MM");
-      if(this.monthValues.indexOf(month) == -1){
-        this.monthValues.push(month);
-      }
-      this.dayValues.push(day.moment.format("DD"));
-    });
-
-    // Set schedule option as default if not available for the current day
-    if(!this.isAvailableToday){
-      this.formOrder.patchValue({delivery_schedule: 'schedule'});
-    }
-  }
-
-  /**
-  * Set the time range based on the range for each weekday from the listing
-  */
-  setTimeRange() {
-    this.formOrder.get('schedule_time').enable();
-    let selectedDate = moment(this.formOrder.value.schedule_day);
-    let date = this.availableDays.find((day) => {
-       if(day.moment.format("YYYY-MM-DD") === selectedDate.format("YYYY-MM-DD")){
-         return day;
-       }
-    });
-    this.timeRange = date.time_range;
-    console.log("TIME RANGE - ",date.time_range);
-    this.formOrder.get('schedule_time').reset();
-  }
-
-  /**
-  *
-  */
   validOrder(){
     return (this.formOrder.valid);
      // &&  (this.formOrder.value.delivery_time != '' ||   this.formOrder.value.schedule_day != '');
@@ -257,17 +176,17 @@ export class ListingOrderPage {
       this.order = new OrderModel();
 
       //Set the delivery option to the new Order object
-      this.order.delivery_option = this.formOrder.value.delivery_option;
+      this.order.shipping_option = this.formOrder.value.shipping_option;
 
       // Set the delivery schedule based on the delivery option
-      if(this.formOrder.value.delivery_option == "Shipping") {
-        this.order.delivery_schedule = moment().add(3, 'd').valueOf();
+      if(this.formOrder.value.shipping_option == "Shipping") {
+        this.order.shipping_schedule = moment().add(3, 'd').valueOf();
       }else{
-        if(this.formOrder.value.delivery_schedule == "asap") {
-          this.order.delivery_schedule = this.takeToday.valueOf();
+        if(this.formOrder.value.shipping_schedule == "asap") {
+          this.order.shipping_schedule = this.takeToday.valueOf();
         }else {
           let schedule_date = this.formOrder.value.schedule_day+"T"+this.formOrder.value.schedule_time;
-          this.order.delivery_schedule = moment(schedule_date, "YYYY-MM-DDTHH:mm").valueOf();
+          this.order.shipping_schedule = moment(schedule_date, "YYYY-MM-DDTHH:mm").valueOf();
         }
       }
 
@@ -279,10 +198,8 @@ export class ListingOrderPage {
       // Set Order Invoice
       this.order.invoice = this.invoice;
 
-      // Set order delivery address
-      if(this.order.delivery_option !== "Carryout"){
-        this.order.delivery_address = this.primaryAddress;
-      }
+      // Set order shipping address
+      this.order.shipping_address = this.primaryAddress;
 
       // Set the order status
       let order_labels = this.orderService.getStatusLabel();

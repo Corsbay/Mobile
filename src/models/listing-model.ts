@@ -6,7 +6,6 @@ export class ListingModel{
   description: string = "";
 
   // Shipping information
-  shipping: boolean = false;
   shipping_fee: number = 0.00;
   shipping_processing_time: string = "";
   refund_policies: string = "";
@@ -14,7 +13,7 @@ export class ListingModel{
   additional_policies: string = "";
 
   condition: string = "";
-  condtio_details: string = "";
+  condition_details: string = "";
   measure_unit: string = "";
   unit_value: number = 1;
   confirmation: boolean = false;

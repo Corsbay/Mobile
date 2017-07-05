@@ -39,7 +39,7 @@ export class OrderCheckoutPage {
   	console.log(this.order);
 
   	// Set the shipping address - if for delivery
-  	if(this.order.delivery_option == "Delivery") {
+  	if(this.order.shipping_option == "Delivery") {
   		this.shippingAddress = true;
       this.showDeliveryFee = true;
   	}else{

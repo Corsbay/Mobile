@@ -36,15 +36,12 @@
       <ion-card-title class="item-title">
         {{listing.title}}
       </ion-card-title>
-      <span item-center class="delivery_options" *ngIf="listing.delivery">
+<!--       <span item-center class="shipping_options" *ngIf="listing.delivery">
         Delivery
       </span>
-      <span item-center class="delivery_options" *ngIf="listing.carryout">
-         - Carryout
-      </span>
-      <span item-center class="delivery_options" *ngIf="listing.shipping">
+      <span item-center class="shipping_options" *ngIf="listing.shipping">
          - Shipping
-      </span>
+      </span> -->
       <p ion-text>
         {{ listing?.distance | distancePipe: 'miles' }} away
       </p>
@@ -120,61 +117,13 @@
         <!-- <span>Paypal, Visa, MasterCard, American Express, Discover</span> -->
         <sub ion-text color="secondary">
           <p>Corsbay keep your payment informations secure.</p>
-          <p>Sellers don't receive your credit card information.</p>
+          <p>Sellers don't see your payment informations.</p>
         </sub>
       </ion-item>
     </ion-item-group>
 
 
-    <ion-item-group *ngIf="listing.delivery || listing.carryout">
-  <!--     <ion-item-divider>
-        Delivery / Carryout Policies & FAQs
-      </ion-item-divider> -->
-      <ion-list-header>
-        Delivery / Carryout Policies & FAQs
-      </ion-list-header>
-      <ion-item>
-        <h2 class="content-title">Estimated delivery:</h2>
-          <p class="content-text">
-            {{listing.delivery_processing_time}} minutes
-          </p>
-        <h2 class="content-title">Delivery Policies & FAQs</h2>
-          <p class="content-text">
-            {{listing.delivery_policies}}
-          </p>
-      </ion-item>
-
-      <!-- <ion-item-divider>Local Schedule</ion-item-divider> -->
-      <ion-list-header>Local Schedule</ion-list-header>
-      <ion-item *ngFor="let schedule of listing.schedule">
-        <ion-row>
-          <ion-col width-100 class="schedule-data">
-            <div class="data-item">
-              <div class="item-content">
-
-                <h2 class="item-title ">
-                  <ion-icon class="title-icon" ios="ios-calendar" md="md-calendar">
-                  </ion-icon>
-                  {{ schedule?.day }}
-                </h2>
-
-                <div class="item-description">
-                  <h2 class="description-text">
-                    <ion-icon class="description-icon" name="clock"></ion-icon>
-                    <span class="description-label">From: </span>{{ schedule?.from_time | momentPipe: ['hh:mm a', 'HH:mm'] }} -
-                    <span class="description-label">To: </span>{{ schedule?.to_time | momentPipe: ['hh:mm a', 'HH:mm'] }}
-                  </h2>
-                </div>
-
-              </div>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-    </ion-item-group>
-
-
-    <ion-item-group  *ngIf="listing.shipping">
+    <ion-item-group>
       <!-- <ion-item-divider>Shipping & policies</ion-item-divider> -->
       <ion-list-header>Shipping Policies & FAQs</ion-list-header>
       <ion-item >

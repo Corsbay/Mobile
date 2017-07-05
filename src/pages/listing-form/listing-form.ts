@@ -7,7 +7,7 @@ import { ListingPage } from '../listing/listing';
 
 // import { AuthService } from '../../providers/auth.service';
 import { ProfileService } from '../../providers/profile.service';
-import { BaseProvider } from '../../app/base.provider';
+import { BaseService } from '../../providers/base.service';
 import { ListingService } from '../../providers/listing.service';
 import { MediaService } from '../../providers/media.service';
 
@@ -59,7 +59,7 @@ export class ListingFormPage {
     public loadingCtrl: LoadingController,
     public actionSheetCtrl: ActionSheetController,
     public params: NavParams,
-    public BaseApp: BaseProvider,
+    public BaseApp: BaseService,
     public profileService: ProfileService,
     public listingService: ListingService,
     public mediaService: MediaService,

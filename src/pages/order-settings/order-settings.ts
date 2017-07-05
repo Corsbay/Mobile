@@ -16,7 +16,7 @@ export class OrderSettingsPage {
 	public order: any;
 	public order_key: string;
   public status_list: Array<string> = [];
-  public show_delivery_fee: boolean = false;
+  public show_shipping_fee: boolean = false;
 
   constructor(
     public appCtrl: App,
@@ -36,11 +36,11 @@ export class OrderSettingsPage {
       this.status_list.push(status_list[key]);
     });
 
-    if(this.order.delivery_option == "Delivery") {
+    if(this.order.shipping_option == "Delivery") {
       // this.shipping_address = true;
-      this.show_delivery_fee = true;
+      this.show_shipping_fee = true;
     }else{
-      this.show_delivery_fee = false;
+      this.show_shipping_fee = false;
       // this.carryout_address = true;
     }
   }

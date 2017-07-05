@@ -28,8 +28,8 @@
 	    	<ion-col widht-70>
 	    		<p text-left class="item-title">{{ order.listing_snapshot.title }}</p>
 			    <p text-left>Quantity: {{ order.quantity }}</p>
-			    <p text-left *ngIf="show_delivery_fee">
-			    	{{ order.listing_snapshot.delivery_fee | currency: order.listing_snapshot.currency: true:'1.2-2' }}
+			    <p text-left *ngIf="show_shipping_fee">
+			    	{{ order.listing_snapshot.shipping_fee | currency: order.listing_snapshot.currency: true:'1.2-2' }}
 			    </p>
 			    <div class="price-label" item-right>
 			    	Price:
@@ -38,13 +38,13 @@
 	    	</ion-col>
 	    </ion-row>
 	  </ion-item>
-  	<ion-item *ngIf="order.delivery_address?.primary" class="address-primary">
+  	<ion-item *ngIf="order.shipping_address?.primary" class="address-primary">
   		<h2>Your order will be send to</h2>
-      <h2 class="address-title">{{ order.delivery_address?.full_name }}</h2>
-      <p>{{ order.delivery_address?.street_1 }}</p>
-      <p>{{ order.delivery_address?.city }}, {{ order.delivery_address?.state }} {{ order.delivery_address?.zip_code }}</p>
-      <p>{{ order.delivery_address?.country }}</p>
-      <!-- <h2 item-right *ngIf="order.delivery_address?.primary">Primary</h2> -->
+      <h2 class="address-title">{{ order.shipping_address?.full_name }}</h2>
+      <p>{{ order.shipping_address?.street_1 }}</p>
+      <p>{{ order.shipping_address?.city }}, {{ order.shipping_address?.state }} {{ order.shipping_address?.zip_code }}</p>
+      <p>{{ order.shipping_address?.country }}</p>
+      <!-- <h2 item-right *ngIf="order.shipping_address?.primary">Primary</h2> -->
     </ion-item>
 	</ion-list>
 

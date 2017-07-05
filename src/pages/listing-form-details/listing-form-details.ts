@@ -35,7 +35,6 @@ export class ListingFormDetailsPage {
 
   	this.formDetails = new FormGroup({
 
-      shipping: new FormControl(false),
       shipping_fee: new FormControl(0.00),
       shipping_processing_time: new FormControl(this.default_shipping_policies.shipping_processing_time),
       refund_policies: new FormControl(this.default_shipping_policies.refund_policies),
@@ -59,29 +58,33 @@ export class ListingFormDetailsPage {
 
     this.formDetails.setValue({
 
-      shipping: this.data.shipping,
       shipping_fee: this.data.shipping_fee,
       shipping_processing_time: this.data.shipping_processing_time,
       refund_policies: this.data.refund_policies,
       cancellation_policies: this.data.cancellation_policies,
       additional_policies: this.data.additional_policies,
 
+      condition: this.data.condition,
+      condition_details: this.data.condition_details,
       measure_unit: this.data.measure_unit,
     	unit_value: this.data.unit_value,
       confirmation: this.data.confirmation
     });
   }
 
+  /*
+  *
+  */
   save() {
-
     //Set shipping data
-    this.data.shipping = this.formDetails.value.shipping;
     this.data.shipping_fee = this.formDetails.value.shipping_fee;
     this.data.shipping_processing_time = this.formDetails.value.shipping_processing_time;
     this.data.refund_policies = this.formDetails.value.refund_policies;
     this.data.cancellation_policies = this.formDetails.value.cancellation_policies;
     this.data.additional_policies = this.formDetails.value.additional_policies;
 
+    this.data.condition = this.formDetails.value.condition;
+    this.data.condition_details = this.formDetails.value.condition_details;
     this.data.measure_unit = this.formDetails.value.measure_unit;
     this.data.unit_value = this.formDetails.value.unit_value;
     this.data.confirmation = this.formDetails.value.confirmation;

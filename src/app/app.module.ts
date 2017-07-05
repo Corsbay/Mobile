@@ -81,7 +81,7 @@ import { DistancePipe } from './pipes/distance-pipe';
 */
 import { DataService } from '../providers/data.service';
 import { AuthService } from '../providers/auth.service';
-import { BaseProvider } from './base.provider';
+import { BaseService } from '../providers/base.service';
 import { MediaService } from '../providers/media.service';
 import { ListingService } from '../providers/listing.service';
 import { ListItemService } from '../providers/list-item.service';
@@ -217,7 +217,7 @@ declare var cordova: any;
     AuthService,
     ProfileService,
     SellerService,
-    BaseProvider,
+    BaseService,
     MediaService,
     ListingService,
     ListItemService,

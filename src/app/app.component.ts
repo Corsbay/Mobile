@@ -16,7 +16,7 @@ import { ProfileService } from '../providers/profile.service';
 
 import { MapProvider } from '../providers/map-provider';
 
-import { BaseProvider } from './base.provider';
+import { BaseService } from '../providers/base.service';
 
 import { ListingPage } from '../pages/listing/listing';
 import { ProfilePage } from '../pages/profile/profile';
@@ -58,7 +58,7 @@ export class MyApp {
   constructor(
     public platform: Platform,
     public events: Events,
-    public BaseApp: BaseProvider,
+    public BaseApp: BaseService,
     public app: App,
     public map: MapProvider,
     public menu: MenuController,
