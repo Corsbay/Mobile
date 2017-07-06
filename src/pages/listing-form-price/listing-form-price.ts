@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController, ViewController, AlertController, NavParams } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
-import { PriceModel } from '../../models/listing-model';
+import { PriceModel } from '../../models/item-draft-model';
 
 @Component({
   selector: 'page-listing-form-price',
@@ -66,40 +66,6 @@ export class ListingFormPricePage {
 
 	setPrice(){
 		console.log("set the price");
-	}
-
-
-	pricePrompt() {
-	  let alert = this.alertCtrl.create({
-	    title: 'Set your price',
-	    inputs: [
-	      {
-	        name: 'price',
-	        placeholder: 'Price'
-	      },
-	      {
-	        name: 'date',
-	        placeholder: 'Date',
-	        type: 'date'
-	      }
-	    ],
-	    buttons: [
-	      {
-	        text: 'Cancel',
-	        role: 'cancel',
-	        handler: data => {
-	          console.log('Cancel clicked');
-	        }
-	      },
-	      {
-	        text: 'save',
-	        handler: data => {
-						this.setPrice();
-	        }
-	      }
-	    ]
-	  });
-	  alert.present();
 	}
 
 }

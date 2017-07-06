@@ -30,33 +30,15 @@
 
 	  <ion-list>
 
-	  	<ion-item-group>
-		  	<ion-item-divider>
-		  		Listing options
-		  	</ion-item-divider>
-		  	<button ion-item>
-		  		<h2>Add option</h2>
-		  	</button>
-		  </ion-item-group>
-
-
 		  <ion-item-group>
-		  	<ion-item-divider>Mesure system</ion-item-divider>
-		  	<ion-item>
+<!-- 		  	<ion-item>
 		      <ion-label>Measure unit</ion-label>
 	        <ion-select formControlName="measure_unit" multiple="false">
 	          <ion-option *ngFor="let unit of measureUnits" value="{{unit.value}}">
 	            {{unit.label}}
 	          </ion-option>
 	        </ion-select>
-		    </ion-item>
-		    <ion-item>
-		    	<ion-label>Volume</ion-label>
-		      <ion-input formControlName="unit_value" type="number" text-right>
-		      </ion-input>
-		    </ion-item>
-
-	  		<ion-item-divider></ion-item-divider>
+		    </ion-item> -->
 	  		<ion-item>
 		      <ion-label>Item Conditions</ion-label>
 	        <ion-select formControlName="condition" multiple="false">
@@ -69,6 +51,13 @@
 		      <ion-label stacked>Condition details</ion-label>
 		      <ion-textarea rows="2" formControlName="condition_details" maxlength="400"></ion-textarea>
 	      </ion-item>
+
+		    <ion-item-divider></ion-item-divider>
+		    <ion-item>
+		    	<ion-label>Measure</ion-label>
+		      <ion-input formControlName="item_measure" type="text" text-right>
+		      </ion-input>
+		    </ion-item>
 		  </ion-item-group>
 
 		  <ion-item-group>
@@ -106,6 +95,34 @@
 		      <ion-textarea rows="8" formControlName="additional_policies" maxlength="800"></ion-textarea>
 	      </ion-item>
 	    </ion-item-group>
+
+	    <ion-item-group>
+		  	<ion-item-divider>
+		  		Item options
+		  	</ion-item-divider>
+		  	<button ion-item (click)="presentOptionsModal()">
+		  		<ion-icon name="add" item-left></ion-icon>
+		  		<h2>Add option</h2>
+		  	</button>
+		  	<ion-item-divider></ion-item-divider>
+
+        <ion-item-sliding #item *ngFor="let option of itemOptions">
+          <ion-item text-right>
+            {{option}}
+          </ion-item>
+          <ion-item-options icon-start>
+            <button ion-button color="secondary" (click)="presentOptionsModal(option)">
+              <ion-icon ios="ios-create" large></ion-icon>
+              Edit
+            </button>
+            <button ion-button color="danger" (click)="deleteItemOption(option)">
+              <ion-icon ios="ios-trash" large></ion-icon>
+              Delete
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+
+		  </ion-item-group>
 
 	    <ion-item-group>
 	    	<ion-item-divider></ion-item-divider>

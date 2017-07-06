@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, ViewController, NavParams } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
-import { ListingService } from '../../providers/listing.service';
-import { ScheduleModel } from '../../models/listing-model';
+import { ItemDraftService } from '../../providers/item-draft.service';
+import { ScheduleModel } from '../../models/item-draft-model';
 
 /**
 * Define an inter modal to the Schedule
@@ -22,7 +22,7 @@ export class ScheduleModalPage {
   	public nav: NavController, 
   	public viewCtrl: ViewController,
   	public params: NavParams,
-    private listingService: ListingService
+    private listingService: ItemDraftService
   ){
 
     this.data = new ScheduleModel();

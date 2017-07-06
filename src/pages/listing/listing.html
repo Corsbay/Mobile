@@ -44,17 +44,17 @@
   </form>
 
   <ion-segment class="segment-bar" [(ngModel)]="segment_topbar">
+    <ion-segment-button class="segment-button" value="Explore" (click)="getItems()">
+      Explore
+    </ion-segment-button>
     <ion-segment-button class="segment-button" value="Local" (click)="getLocalItems()">
       Local
-    </ion-segment-button>
-    <ion-segment-button class="segment-button" value="Favorites">
-      Favorites
     </ion-segment-button>
     <ion-segment-button class="segment-button" value="Activity">
       Activity
     </ion-segment-button>
-    <ion-segment-button class="segment-button" value="Explore" (click)="getItems()">
-      Explore
+    <ion-segment-button class="segment-button" value="Favorites">
+      Favorites
     </ion-segment-button>
   </ion-segment>
 

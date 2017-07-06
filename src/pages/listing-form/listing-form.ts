@@ -8,10 +8,10 @@ import { ListingPage } from '../listing/listing';
 // import { AuthService } from '../../providers/auth.service';
 import { ProfileService } from '../../providers/profile.service';
 import { BaseService } from '../../providers/base.service';
-import { ListingService } from '../../providers/listing.service';
+import { ItemDraftService } from '../../providers/item-draft.service';
 import { MediaService } from '../../providers/media.service';
 
-import { ListItemService } from '../../providers/list-item.service';
+import { ItemService } from '../../providers/item.service';
 
 /* Pages */
 import { ListingFormCategoriesPage } from '../listing-form-categories/listing-form-categories';
@@ -26,7 +26,7 @@ import { ListingDetailsPage } from '../listing-details/listing-details';
 @Component({
   selector: 'listing-form-page',
   templateUrl: 'listing-form.html',
-  providers: [ListingService]
+  providers: [ItemDraftService]
 })
 export class ListingFormPage {
 
@@ -61,9 +61,9 @@ export class ListingFormPage {
     public params: NavParams,
     public BaseApp: BaseService,
     public profileService: ProfileService,
-    public listingService: ListingService,
+    public listingService: ItemDraftService,
     public mediaService: MediaService,
-    public itemService: ListItemService
+    public itemService: ItemService
   ){
 
     this.typeForm = new FormGroup({
@@ -91,7 +91,7 @@ export class ListingFormPage {
     if(this.listing_ref !== undefined){
       this.new_listing = false;
       // Load the listing data from the database and set into the view
-      this.loadListingData();
+      this.loadItemDraft();
     }
 
   }
@@ -101,7 +101,7 @@ export class ListingFormPage {
   */
   nextListingForm() {
     if(this.typeForm.valid){      
-      this.listingService.loadListingData(null).then((result) => {
+      this.listingService.loadItemDraft(null).then((result) => {
 
         console.log(result);
         if(result["listing"] !== null) { 
@@ -112,7 +112,7 @@ export class ListingFormPage {
           this.listing.listing_type = this.typeForm.value.listing_type;
           this.temp_medias = this.listing.medias;
 
-          this.listingService.updateListing(this.listing_ref, { listing_type: this.typeForm.value.listing_type})
+          this.listingService.updateItemDraft(this.listing_ref, { listing_type: this.typeForm.value.listing_type})
           .then(()=>{
             this.new_listing = false;
           });
@@ -134,9 +134,9 @@ export class ListingFormPage {
   /**
   * Load the listing data
   */
-  loadListingData() {
+  loadItemDraft() {
 
-    this.listingService.loadListingData(this.listing_ref).then((result) => {
+    this.listingService.loadItemDraft(this.listing_ref).then((result) => {
 
       this.listing = result["listing"];
       if(!this.listing_ref){
@@ -185,13 +185,13 @@ export class ListingFormPage {
   /**
   * Save the listing data
   */ 
-  // saveListing(){
+  // saveItemDraft(){
   //     if(this.temp_medias.length > 0){
   //       this.listing.medias = this.temp_medias;
   //     }
 
   //     if(this.listing_ref){
-  //       this.listingService.updateListing(this.listing_ref, this.listing).catch((error) => {
+  //       this.listingService.updateItemDraft(this.listing_ref, this.listing).catch((error) => {
   //         console.log(error);
   //         let title = "Ops! Sorry about that";
   //         this.BaseApp.showAlert(title, error.message);
@@ -227,7 +227,7 @@ export class ListingFormPage {
 
       this.checkPublishValidation();
 
-      this.listingService.updateListing(this.listing_ref, this.listing).catch((error) => {
+      this.listingService.updateItemDraft(this.listing_ref, this.listing).catch((error) => {
         console.log(error);
         let title = "Ops! Sorry about that";
         this.BaseApp.showAlert(title, error.message);
@@ -285,7 +285,7 @@ export class ListingFormPage {
 
       media = {medias: this.temp_medias};
       // Update the listing media reference with the new picture URI
-      return this.listingService.updateListing(this.listing_ref, media).then(() => {
+      return this.listingService.updateItemDraft(this.listing_ref, media).then(() => {
         // this.loading.dismiss();
       }).catch((error) => {
         console.log(error.message);

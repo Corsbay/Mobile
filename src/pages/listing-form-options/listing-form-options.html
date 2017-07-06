@@ -1,0 +1,64 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="cancel()">
+        Cancel
+      </button>
+    </ion-buttons>
+    <ion-title>Item Options</ion-title>
+
+    <ion-buttons end>
+      <button ion-button type='submit' (click)="save()">
+        Save
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="form-content">
+  <form class="form-style" [formGroup]="formOptions">
+    <section class="form-section">
+      <h2 class="section-title">
+        <p>Here you can manage the options for your item,</p>
+        <p>like color, size and so on.</p>
+      </h2>
+  	</section>
+
+    <section class="schedule-content">
+
+      <ion-list>
+
+        <ion-item>
+          <ion-label>Label</ion-label>
+          <ion-input formControlName="label" type="text" placeholder="e.g.: Color" text-right>
+          </ion-input>
+        </ion-item>
+
+        <ion-item-divider></ion-item-divider>
+        <button ion-button full outline (click)="optionsPrompt()">
+          <ion-icon name="add" item-left></ion-icon>
+          Add option
+        </button>
+
+        <ion-item-divider> Options </ion-item-divider>
+        <ion-item-sliding #item *ngFor="let option of options; let i = index">
+          <ion-item>
+            <label>{{option}}</label>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="danger" (click)="deleteOptionsItem(i)">
+              <ion-icon ios="ios-trash"></ion-icon>
+              Delete
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+
+      </ion-list>
+
+    </section>
+  </form>
+
+</ion-content>
+

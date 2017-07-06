@@ -2,8 +2,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { Keyboard, NavController, ModalController, AlertController, LoadingController, NavParams} from 'ionic-angular';
 
 import { ProfileService } from '../../providers/profile.service';
-import { ListingService } from '../../providers/listing.service';
-import { ListItemService } from '../../providers/list-item.service';
+import { ItemDraftService } from '../../providers/item-draft.service';
+import { ItemService } from '../../providers/item.service';
 
 import { LocationModalPage, } from '../location-modal/location-modal';
 import { ListingFilterPage } from '../listing-filter/listing-filter';
@@ -24,14 +24,14 @@ export class ListingPage implements OnDestroy{
   public listings: any;
 
   public search_query: string;
-  public segment_topbar: string = "Local";
+  public segment_topbar: string = "Explore";
   public section_title: string = "";
 
   constructor(
     public keyboard: Keyboard,
     public nav: NavController,
-    public listingService: ListingService,
-    public itemService: ListItemService,
+    public listingService: ItemDraftService,
+    public itemService: ItemService,
     public params: NavParams,
     private _profileService: ProfileService,
     public alertCtrl: AlertController,
@@ -43,7 +43,7 @@ export class ListingPage implements OnDestroy{
   }
 
   ionViewDidLoad() {
-   this.getLocalItems();
+   this.getItems();
   }
 
   ngOnDestroy() {

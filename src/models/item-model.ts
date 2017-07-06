@@ -1,3 +1,7 @@
+/*
+* Use under_score pattens to name model properties
+*/
+
 export class ItemModel {
   active: boolean = true;
   title: string = "";
@@ -14,8 +18,7 @@ export class ItemModel {
 
   condition: string = "";
   condition_details: string = "";
-  measure_unit: string = "";
-  unit_value: number = 1;
+  item_measure: string = "";
   confirmation: boolean = false;
   listing_type: string;
 

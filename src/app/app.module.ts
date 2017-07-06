@@ -24,14 +24,15 @@ import { ListingUserPage } from '../pages/listing-user/listing-user';
 import { ListingFormPage } from '../pages/listing-form/listing-form';
 
 import { ListingFormCategoriesPage } from '../pages/listing-form-categories/listing-form-categories';
-
 import { ListingFormDescPage } from '../pages/listing-form-desc/listing-form-desc';
 import { ListingFormPricePage } from '../pages/listing-form-price/listing-form-price';
 import { ListingFormSchedulePage } from '../pages/listing-form-schedule/listing-form-schedule';
 import { ScheduleModalPage } from '../pages/listing-form-schedule/form-schedule-modal';
 import { ListingFormDetailsPage } from '../pages/listing-form-details/listing-form-details';
+import { ListingFormOptionsPage } from '../pages/listing-form-options/listing-form-options';
 import { ListingOrderPage } from '../pages/listing-order/listing-order';
 import { ListingImagesPage } from '../pages/listing-images/listing-images';
+
 import { ImageViewModalPage } from '../pages/image-view-modal/image-view-modal';
 import { LocationModalPage} from '../pages/location-modal/location-modal';
 import { GalleryModal } from '../pages/gallery-modal/gallery-modal';
@@ -83,8 +84,8 @@ import { DataService } from '../providers/data.service';
 import { AuthService } from '../providers/auth.service';
 import { BaseService } from '../providers/base.service';
 import { MediaService } from '../providers/media.service';
-import { ListingService } from '../providers/listing.service';
-import { ListItemService } from '../providers/list-item.service';
+import { ItemDraftService } from '../providers/item-draft.service';
+import { ItemService } from '../providers/item.service';
 import { OrderService } from '../providers/order.service';
 import { ProfileService } from '../providers/profile.service';
 import { SellerService } from '../providers/seller.service';
@@ -100,6 +101,7 @@ declare var cordova: any;
     ListingPage,
     ListingFilterPage,
     ListingDetailsPage,
+    ListingFormOptionsPage,
     ListingOrderPage,
     ListingUserPage,
     ListingFormPage,
@@ -182,6 +184,7 @@ declare var cordova: any;
     ListingFormSchedulePage,
     ScheduleModalPage,
     ListingFormDetailsPage,
+    ListingFormOptionsPage,
     ListingImagesPage,
     ImageViewModalPage,
     LocationModalPage,
@@ -219,8 +222,8 @@ declare var cordova: any;
     SellerService,
     BaseService,
     MediaService,
-    ListingService,
-    ListItemService,
+    ItemDraftService,
+    ItemService,
     MapProvider
     // OrderService,
   ],

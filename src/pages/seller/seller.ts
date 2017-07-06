@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { BaseService } from '../../providers/base.service';
-import { ListingService } from '../../providers/listing.service';
+import { ItemDraftService } from '../../providers/item-draft.service';
 import { OrderService } from '../../providers/order.service';
 
 import { SellerFormPage } from '../seller-form/seller-form';
 import { OrderSettingsPage } from '../order-settings/order-settings';
 
-import { ListingModel } from '../../models/listing-model';
+import { ItemDraftModel } from '../../models/item-draft-model';
 import { ListingFormPage } from '../listing-form/listing-form';
 
 
@@ -21,8 +21,8 @@ export class SellerPage {
 
 	public segment_list: string = "orders";
 
-	public drafts: Array<ListingModel> = [];
-	public listings: Array<ListingModel> = [];
+	public drafts: Array<ItemDraftModel> = [];
+	public listings: Array<ItemDraftModel> = [];
 	public listing_key: string;
 
 	public orders: any;
@@ -32,7 +32,7 @@ export class SellerPage {
   	public params: NavParams,
   	public loadingCtrl: LoadingController,
     public BaseApp: BaseService,
-    public listingService: ListingService,
+    public listingService: ItemDraftService,
     public orderService: OrderService
   ) {}
 
@@ -64,7 +64,7 @@ export class SellerPage {
 
   	let loading = this.loadingCtrl.create();
     loading.present();
-    this.listingService.listListing().once('value', (listingSnap) => {
+    this.listingService.listItemDraft().once('value', (listingSnap) => {
 
       let objects = listingSnap.val();
       if(objects !== undefined && objects !== null ){

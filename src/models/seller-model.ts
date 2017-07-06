@@ -1,3 +1,7 @@
+/*
+* Use under_score pattens to name model properties
+*/
+
 export class SellerModel {
   com_name: string  = "";
   email: string  = "";

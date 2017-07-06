@@ -2,7 +2,7 @@ import { Component} from '@angular/core';
 import { NavController, ViewController, NavParams } from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { ListingService } from '../../providers/listing.service';
+import { ItemDraftService } from '../../providers/item-draft.service';
 
 @Component({
   selector: 'page-listing-filter',
@@ -20,7 +20,7 @@ export class ListingFilterPage {
   	public nav: NavController, 
   	public viewCtrl: ViewController,
   	public params: NavParams,
-  	public listingService: ListingService
+  	public listingService: ItemDraftService
   ){
 
   	this.formFilter = new FormGroup({
@@ -34,7 +34,7 @@ export class ListingFilterPage {
   }
 
   ionViewDidLoad() {
-  	this.categories = this.listingService.getListingCategories();
+  	this.categories = this.listingService.getItemCategories();
   }
 
   /**

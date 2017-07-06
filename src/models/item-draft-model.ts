@@ -1,5 +1,8 @@
+/*
+* Use under_score pattens to name model properties
+*/
 
-export class ListingModel{
+export class ItemDraftModel {
   published: boolean = false;
   title: string = "";
   summary: string = "";
@@ -14,8 +17,7 @@ export class ListingModel{
 
   condition: string = "";
   condition_details: string = "";
-  measure_unit: string = "";
-  unit_value: number = 1;
+  item_measure: string = "";
   confirmation: boolean = false;
 
   location: LocationModel = {
@@ -26,21 +28,13 @@ export class ListingModel{
   categories: Array<any> = [];
   price: PriceModel;
   medias: Array<any> = [];
+  options: any = {};
 
   privacity: string = "public";
   created_at: number = Date.now();
   update_at: number = Date.now();
   form_control: FormControlModel = new FormControlModel();
 
-}
-
-export class ListingTypeModel {
-  service: boolean; // Recipes listed as a chef service to preper this recipe.
-  dish: boolean; // A dish from a local restaurant or licensed chef.
-  pantry: boolean; // to specific craft products such spices. tometoes cans, crafts pesto and so on.
-  bakery: boolean; // bakery products such as brads, cakes and so on.
-  farm_fresh: boolean; // a service to allow local farms set up an fresh engridients chain in box to delivery or pickup
-  event: boolean // A event as dinner, fairs and so on.
 }
 
 export class FormControlModel {

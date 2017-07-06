@@ -9,9 +9,9 @@ import { DataService } from './data.service';
 import { ItemModel } from '../models/item-model';
 
 @Injectable()
-export class ListItemService {
+export class ItemService {
 
-	private LISTING_REF: string = "listings/";
+	private ITEM_REF: string = "listings/";
 	public item: ItemModel;
 	public profile: any;
   public listings: Array<any> = [];
@@ -39,7 +39,7 @@ export class ListItemService {
       if(draft.key == undefined){
         reject("Listing Draft key undefined");
       }else{
-        this._dataService.database.child(this.LISTING_REF + draft.key).set(this.item).then( response => {
+        this._dataService.database.child(this.ITEM_REF + draft.key).set(this.item).then( response => {
 
           // Set GeoFire intance
           if(draft.location !== undefined && draft.location.geolocation !== undefined){ 
@@ -83,8 +83,7 @@ export class ListItemService {
       item.cancellation_policies = draft.cancellation_policies;
       item.additional_policies = draft.additional_policies;
 
-	    item.measure_unit = draft.measure_unit;
-	    item.unit_value = draft.unit_value;
+	    item.item_measure = draft.item_measure;
 	    item.confirmation = draft.confirmation;
 	    item.listing_type = draft.listing_type;
 
@@ -154,7 +153,7 @@ export class ListItemService {
   listItems(filter){
     return new Promise((resolve, reject) => {
       let listings = [];
-      this._dataService.database.child(this.LISTING_REF).on('value', (listingSnap) => {
+      this._dataService.database.child(this.ITEM_REF).on('value', (listingSnap) => {
 
         let data = listingSnap.val();
         Object.keys(data).map(key => {
@@ -199,7 +198,7 @@ export class ListItemService {
 
           geoQuery.on("key_entered", (key, location, distance) => {
           console.log(key + " entered query at " + location + " (" + distance + " km from center)");
-            this._dataService.database.child(this.LISTING_REF + key).once('value', listingSnap => {
+            this._dataService.database.child(this.ITEM_REF + key).once('value', listingSnap => {
 
               let listing = listingSnap.val();
               // retrive the seller for the current listing
@@ -246,13 +245,6 @@ export class ListItemService {
       console.log("Locations provided is not valid");
       return null;
     }
-  }
-
-  /**
-  *
-  */
-  getSeller(){
-
   }
 
 

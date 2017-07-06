@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { BaseService } from '../../providers/base.service';
-import { ListingService } from '../../providers/listing.service';
+import { ItemDraftService } from '../../providers/item-draft.service';
 
-import { ListingModel } from '../../models/listing-model';
+import { ItemDraftModel } from '../../models/item-draft-model';
 
 import { ListingFormPage } from '../listing-form/listing-form';
 
@@ -14,15 +14,15 @@ import { ListingFormPage } from '../listing-form/listing-form';
 })
 export class ListingUserPage {
 
-  public drafts: Array<ListingModel> = [];
-	public listings: Array<ListingModel> = [];
+  public drafts: Array<ItemDraftModel> = [];
+	public listings: Array<ItemDraftModel> = [];
 	public listing_key: string;
 	public loading: any;
 
   constructor(
   	public nav: NavController,
     public BaseApp: BaseService,
-    public listingService: ListingService,
+    public listingService: ItemDraftService,
   	public params: NavParams,
   	public loadingCtrl: LoadingController
   ) {
@@ -40,7 +40,7 @@ export class ListingUserPage {
   private getItems(){
 
     this.loading.present();
-    this.listingService.listListing().once('value', (listingSnap) => {
+    this.listingService.listItemDraft().once('value', (listingSnap) => {
 
       let objects = listingSnap.val();
       if(objects !== undefined && objects !== null ){

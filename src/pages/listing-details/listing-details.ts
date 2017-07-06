@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef} from '@angular/core';
 import { NavController, ModalController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 
 import { ProfileService } from '../../providers/profile.service';
-import { ListItemService } from '../../providers/list-item.service';
+import { ItemService } from '../../providers/item.service';
 
 import { GalleryModal } from '../gallery-modal/gallery-modal';
 
@@ -27,7 +27,7 @@ export class ListingDetailsPage {
     public modalCtrl: ModalController,
   	public params: NavParams,
     public alertCtrl: AlertController,
-  	public itemService: ListItemService,
+  	public itemService: ItemService,
     public loadingCtrl: LoadingController,
   	private profileService: ProfileService
   ){}

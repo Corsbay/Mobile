@@ -1,3 +1,9 @@
+/*
+* Use under_score pattens to name model properties
+*/
+
+// Ajust propertins name patterns!!!!!!!!
+
 export class ProfileModel {
   uid: string = "";
   firstName: string  = "";

@@ -5,18 +5,18 @@ import { AuthService } from './auth.service';
 import { ProfileService } from './profile.service';
 import { DataService } from './data.service';
 
-import { ListingModel } from '../models/listing-model';
+import { ItemDraftModel } from '../models/item-draft-model';
 
-import { PriceModel } from '../models/listing-model';
+import { PriceModel } from '../models/item-draft-model';
 
 
 @Injectable()
-export class ListingService {
+export class ItemDraftService {
 
-	private LISTING_REF: string = "listing_draft/";
+	private DRAFT_REF: string = "listing_draft/";
 	private profile: any;
 
-	public listing: ListingModel;
+	public listing: ItemDraftModel;
 	public max_media: number = 6;
 	public result: { key: string; listing: any; };
 
@@ -32,9 +32,9 @@ export class ListingService {
   /**
   *
   */
-  getListing(key){
+  getItemDraft(key){
     if(this.profile !== undefined ){
-      let ref = this.LISTING_REF + this.profile.uid + "/";
+      let ref = this.DRAFT_REF + this.profile.uid + "/";
     	return this._dataService.database.child(ref + key);
     }
   }
@@ -42,27 +42,27 @@ export class ListingService {
   /**
   * List the listing draft to the current user profile based on his database UID
   */
-  listListing(){
+  listItemDraft(){
     if(this.profile !== undefined ){
-      return this._dataService.database.child(this.LISTING_REF + this.profile.uid);
+      return this._dataService.database.child(this.DRAFT_REF + this.profile.uid);
     }
   }
 
   /**
   *
   */
-  saveListing(data){
+  saveItemDraft(data){
     return this._auth.getCurrentUser().then((currentUser) => {
-      return this._dataService.database.child(this.LISTING_REF + currentUser.uid).push(data);
+      return this._dataService.database.child(this.DRAFT_REF + currentUser.uid).push(data);
     });
   }
 
   /**
   *
   */
-  updateListing(key, data){
+  updateItemDraft(key, data){
     return this._auth.getCurrentUser().then((currentUser) => {
-      let ref = this.LISTING_REF + currentUser.uid + "/";
+      let ref = this.DRAFT_REF + currentUser.uid + "/";
       return this._dataService.database.child(ref + key).update(data);
     });
   }
@@ -70,15 +70,15 @@ export class ListingService {
 
   /**
   * Load the listing from the database if there is a Key, if not, create
-  * a craft one based on the Listing Model.
+  * a craft one based on the Item Draft Model.
   */
-  loadListingData(key){
+  loadItemDraft(key){
 
   	return new Promise((resolve, reject) => {
       // If listing has an key, fetch the data
       if(key !== null){
 
-        this.getListing(key).once('value', (listingSnap) => {
+        this.getItemDraft(key).once('value', (listingSnap) => {
           this.result = { key: listingSnap.key, listing: listingSnap.val() };
            resolve(this.result);
         })
@@ -95,13 +95,13 @@ export class ListingService {
         }
 
         // Create a craft to the listing
-        var data = new ListingModel();
+        var data = new ItemDraftModel();
         data.medias = medias;
         data.price = new PriceModel();
         data.price.currency = this.profile.currency;
         console.log("Currencyyyyyyyyyy",data);
 
-        this.saveListing(data).then((ref) => {
+        this.saveItemDraft(data).then((ref) => {
           this.result = { key: ref.key, listing: data};
           resolve(this.result);
         })
@@ -114,20 +114,6 @@ export class ListingService {
 
   }
 
-  /**
-  * Summarize a full listing object to be persisted as embeded object
-  * @param listing - the regular listing object with full propertires
-  */
-  // summarizeListing(listing) {
-  //   // NOT THE BEST WAY TO CLONE AN OBJECT, BUT WORKS FOR NOW, I HAVE NO TIME FOR BENCHMARK IT
-  //   let clone_listing = JSON.parse(JSON.stringify(listing)); //Clone the listing object
-  //   clone_listing.form_control = null;
-  //   clone_listing.reviews = null;
-  //   clone_listing.schedule = null;
-
-  //   return clone_listing;
-  // }
-
 
   /**
   * Return a promise with the resolved upload task snapshot or reject
@@ -135,7 +121,7 @@ export class ListingService {
   * @param ref - the listing reference to map the file within the firebase storage
   */
   uploadPicture(imageBlob, ref){
-    let imageRef = this.LISTING_REF + ref + "/listing_" + Date.now() + ".jpg";
+    let imageRef = this.DRAFT_REF + ref + "/listing_" + Date.now() + ".jpg";
     return new Promise((resolve, reject) => {
 
       let upTask = this._dataService.imageRef().child( imageRef ).put(imageBlob);
@@ -177,30 +163,11 @@ export class ListingService {
     return conditions;
   }
 
-  /**
-  * Provide measure units labels to the UI
-  */
-  getMeasureUnits() {
-    let measure_units = [
-      { label: "Units", short: "unt", value: "Units"},
-      { label: "Pair", short: "pr", value: "Pair"},
-      { label: "Kilograms", short: "kg", value: "Kilograms"},
-      { label: "Grams", short: "g", value: "Grams"},
-      { label: "Pounds", short: "lb", value: "Pounds"},
-      { label: "Ounces", short: "oz", value: "Ounces"},
-      { label: "Liters", short: "l", value: "Liters"},
-      { label: "Milliliters", short: "ml", value: "Milliliters"},
-      { label: "Servings", short: "srv", value: "Servings"},
-      { label: "Seats", short: "seat", value: "Seats"}
-    ]
-    return measure_units;
-  }
-
 
   /**
   *
   */
-  getListingCategories(){
+  getItemCategories(){
     let categories = [
       {label:"Eletronics", value:"Eletronics", checked: false},
       {label:"Mobile", value:"Mobile", checked: false},

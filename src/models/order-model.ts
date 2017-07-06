@@ -1,3 +1,6 @@
+/*
+* Use under_score pattens to name model properties
+*/
 
 export class OrderModel{
   listing_snapshot: any;

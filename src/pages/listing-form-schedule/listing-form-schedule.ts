@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController, ViewController, NavParams } from 'ionic-angular';
 
 import { ScheduleModalPage } from './form-schedule-modal';
-import { ScheduleModel } from '../../models/listing-model';
+import { ScheduleModel } from '../../models/item-draft-model';
 
 
 @Component({

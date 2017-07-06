@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController, ViewController, NavParams } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
-import { ListingService } from '../../providers/listing.service';
+import { ItemDraftService } from '../../providers/item-draft.service';
 
 @Component({
   selector: 'page-listing-form-categories',
@@ -18,10 +18,10 @@ export class ListingFormCategoriesPage {
   	public nav: NavController, 
   	public viewCtrl: ViewController,
   	public params: NavParams,
-  	public listingService: ListingService
+  	public listingService: ItemDraftService
   ){
 
-    this.categories = this.listingService.getListingCategories();
+    this.categories = this.listingService.getItemCategories();
 
     // this.formCategories = new FormGroup({
     //   categories: new FormControl('false', Validators.required)
