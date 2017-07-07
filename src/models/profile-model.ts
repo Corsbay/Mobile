@@ -6,8 +6,8 @@
 
 export class ProfileModel {
   uid: string = "";
-  firstName: string  = "";
-  lastName: string  = "";
+  first_name: string  = "";
+  last_name: string  = "";
   gender: string = "" ;
   birthday: string = "";
   about: string  = "I am a good person.";
@@ -17,20 +17,17 @@ export class ProfileModel {
 
   location: any  = {};
   addresses: Array<ProfileAddressModel> = [];
-  shortProfile: ShortProfileModel;
+  short_profile: ShortProfileModel;
   languages: Array<any> = [];
   currency: Array<any> = [];
 
-  seller_profile: boolean = false;
-
-  balanceAccount: string;
+  balance_account: string;
   favorites: Array<any> = [];
   reviews: Array<any> = [];
   messages: Array<any> = [];
   bookings: Array<any> = [];
-
-  verifiedInfo: Array<any> = [];
-
+  verified_info: Array<any> = [];
+  seller_profile: boolean = false;
   created_at: number = Date.now();
 }
 
@@ -58,8 +55,8 @@ export class ProfileAddressModel {
 
 export class UserModel {
   uid: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   image: string;
   email: string;
   phone: string;

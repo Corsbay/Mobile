@@ -159,7 +159,7 @@ export class MyApp {
   *
   */
   private _setProfile(userProfile){
-    this.profileName = userProfile.firstName;
+    this.profileName = userProfile.first_name;
     this.profileLocation = userProfile.location;
     this.profileImage = userProfile.image;
   }

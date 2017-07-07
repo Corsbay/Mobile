@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController, ViewController, NavParams } from 'ionic-angular';
-import { Validators, FormGroup, FormControl } from '@angular/forms';
+// import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 import { ItemDraftService } from '../../providers/item-draft.service';
 
@@ -10,7 +10,6 @@ import { ItemDraftService } from '../../providers/item-draft.service';
 })
 export class ListingFormCategoriesPage {
 
-	public formCategories: FormGroup;
 	public data: any;
   public categories: Array<any> = [];
 
@@ -21,44 +20,45 @@ export class ListingFormCategoriesPage {
   	public listingService: ItemDraftService
   ){
 
-    this.categories = this.listingService.getItemCategories();
-
-    // this.formCategories = new FormGroup({
-    //   categories: new FormControl('false', Validators.required)
-    // });
   }
 
   ionViewDidLoad() {
     this.data = this.params.get('data');
 
-    console.log("======",this.data);
-    if(this.data.categories !== undefined ){
+    // Load categories
+    this.listingService.getCategories().subscribe((data) => { 
+        this.categories = data;
 
-      this.data.categories.forEach(category => {
-        for (let i = 0; i < this.categories.length; i++) {
-          if(category.checked === true && category.value === this.categories[i].value){
-            this.categories[i].checked = true;
-            break;
-          }
+        if(this.data.categories !== undefined ){
+          Object.keys(this.data.categories).forEach((category) => {
+            for(let i = 0; i < this.categories.length; i++) {
+              if(category === this.categories[i].category){
+                this.categories[i].checked = true;
+                break;
+              }
+            }
+          });
         }
-      });
-    }
+
+      },
+      error => { console.log(error) }
+    );
   }
 
-  /**
-  *
+  /*
+  * Save the selected categories to tha data object container
   */
   save() {
 
-    this.data.categories = [];
-	  this.categories.forEach(category =>{
+    this.data.categories = {};
+	  this.categories.forEach((category) => {
       if(category.checked){
-        this.data.categories.push(category);
+        this.data.categories[category.category] = true;
       }
     });
 
  
-		if(this.data.categories.length > 0){
+		if(Object.keys(this.data.categories).length > 0){
 			this.data.form_control.categories = true;
 		}else{
 			this.data.form_control.categories = false;

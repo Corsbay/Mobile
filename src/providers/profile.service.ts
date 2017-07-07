@@ -85,6 +85,7 @@ export class ProfileService {
     let refShortProfile = this.SHORT_PROFILE_REF + uid;
     return this._dataService.database.child(refShortProfile);
   }
+  
   saveShortProfile(uid, data){
     return this._dataService.database.child(this.SHORT_PROFILE_REF + uid).update(data);
   }

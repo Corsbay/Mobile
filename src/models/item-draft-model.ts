@@ -25,7 +25,7 @@ export class ItemDraftModel {
       geolocation: { lat: 38.046386, lng: -87.551769 }
     }
 
-  categories: Array<any> = [];
+  categories: any = {};
   price: PriceModel;
   medias: Array<any> = [];
   options: any = {};

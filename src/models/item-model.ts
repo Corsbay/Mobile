@@ -20,7 +20,7 @@ export class ItemModel {
   condition_details: string = "";
   item_measure: string = "";
   confirmation: boolean = false;
-  listing_type: string;
+  categories: any = {};
 
   search_tags: string = "";
 

@@ -14,7 +14,7 @@
 <ion-content class="forms-content">
 
   <div *ngIf="new_listing">
-    <form class="form-style" [formGroup]="typeForm">
+    <form class="form-style" [formGroup]="startForm">
 
       <section class="form-section">
         <h2 class="section-title">
@@ -23,13 +23,13 @@
         </h2>
       </section>
 
-      <ion-list class="radio-group" radio-group formControlName="listing_type">
+      <ion-list class="radio-group" radio-group formControlName="category">
 
         <ion-item-divider> Categories </ion-item-divider>
 
         <ion-item class="radio-item" *ngFor="let category of categories">
           <ion-label>
-            > {{ category.category }}
+            {{ category.category }}
             <div class="listing-type-info">
               <p>{{ category.note }}</p>
             </div>
@@ -40,7 +40,7 @@
       </ion-list>
 
       <section class="form-section">
-        <button ion-button block class="form-action-button create-post-button" (click)="nextListingForm()" [disabled]="!typeForm.valid">
+        <button ion-button block class="form-action-button create-post-button" (click)="nextListingForm()" [disabled]="!startForm.valid">
           Next
         </button>
       </section>
@@ -53,8 +53,10 @@
     <form class="form-style">
       <section class="form-section">
         <h2 class="section-title">
-          <p>Good pictures of your product play a vary importante rule.</p>
-          Choose some beautiful pictures to show your customers the quality of your product!
+          <p>
+          Pictures of your item play a vary importante role.
+          Choose pictures that helps discribe your item to your custumers.
+          </p>
         </h2>
 
         <button ion-button block large class="upload-image-button" (click)="cameraActionSheet()">

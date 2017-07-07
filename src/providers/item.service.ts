@@ -85,7 +85,7 @@ export class ItemService {
 
 	    item.item_measure = draft.item_measure;
 	    item.confirmation = draft.confirmation;
-	    item.listing_type = draft.listing_type;
+	    item.categories = draft.categories;
 
 	    item.main_price = draft.price.main_price;
 	    item.promotion_price = draft.price.long_term_price;
@@ -120,25 +120,12 @@ export class ItemService {
   * @param draft = listing draft
   */
   setSearchTags(item, draft){
-    item['search_tags'] = draft.listing_type;
-    item.search_tags = item.search_tags.concat(" "+draft.title);
-
+    item['search_tags'] = item.search_tags.concat(" "+draft.title);
     // Set categories tags
     if(draft.categories !== undefined){
-      draft.categories.forEach((category) => {
-        item.search_tags = item.search_tags.concat(" "+category.value);
+      Object.keys(draft.categories).forEach((category) => {
+        item.search_tags = item.search_tags.concat(" "+category);
       });
-    }
-
-    //Delivery service tags
-    if(draft.delivery == true){
-      item.search_tags = item.search_tags.concat(" delivery");
-    }
-    if(draft.carryout == true){
-      item.search_tags = item.search_tags.concat(" carryout");
-    }
-    if(draft.shipping == true){
-      item.search_tags = item.search_tags.concat(" shipping");
     }
 
     return item;

@@ -51,7 +51,7 @@
       My Categories
     </ion-list-header> -->
     <ion-item class="checkbox-item" *ngFor="let category of categories">
-      <ion-label>{{category.label}}</ion-label>
+      <ion-label>{{category.category}}</ion-label>
       <ion-checkbox [(ngModel)]="category.checked"></ion-checkbox>
     </ion-item>
   </ion-list>

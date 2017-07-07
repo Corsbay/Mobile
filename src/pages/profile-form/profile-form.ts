@@ -67,8 +67,8 @@ export class ProfileFormPage {
   setProfile(profile){
     if(profile){
       this.ProfileForm.patchValue({
-          firstName: profile.firstName,
-          lastName: profile.lastName,
+          firstName: profile.first_name,
+          lastName: profile.last_name,
           gender: profile.gender,
           birthday: profile.birthday,
           about: profile.about,
@@ -87,8 +87,8 @@ export class ProfileFormPage {
       var saveTask: Promise<any>;
 
       /* set the new data to the profile objetct */
-      this.profile.firstName = this.ProfileForm.value.firstName;
-      this.profile.lastName = this.ProfileForm.value.lastName;
+      this.profile.first_name = this.ProfileForm.value.firstName;
+      this.profile.last_name = this.ProfileForm.value.lastName;
       this.profile.gender = this.ProfileForm.value.gender;
       this.profile.birthday = this.ProfileForm.value.birthday;
       this.profile.about = this.ProfileForm.value.about;
@@ -118,9 +118,9 @@ export class ProfileFormPage {
       saveTask.then((prom) => {
 
         /* Set the simple Profile */
-        let fullName = this.profile.firstName +" "+ this.profile.lastName;
+        let fullName = this.profile.first_name +" "+ this.profile.last_name;
         let shortProfile = {
-            fullName: fullName,
+            full_name: fullName,
             image: this.profile.image,
             email: this.profile.email
           }

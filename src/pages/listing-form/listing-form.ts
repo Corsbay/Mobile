@@ -32,7 +32,7 @@ export class ListingFormPage {
 
   public listing: any;
   public categories: Array<any>;
-  public typeForm: FormGroup;
+  public startForm: FormGroup;
   public new_listing: boolean = true;
 
   public legalStatement: string = "By tapping Publish Item, you agree to pay the fees above, accept the listing conditions above, and assume full responsability for the content of the listing and item offred.";
@@ -61,13 +61,13 @@ export class ListingFormPage {
     public params: NavParams,
     public BaseApp: BaseService,
     public profileService: ProfileService,
-    public listingService: ItemDraftService,
+    public draftService: ItemDraftService,
     public mediaService: MediaService,
     public itemService: ItemService
   ){
 
-    this.typeForm = new FormGroup({
-      listing_type: new FormControl('', Validators.required)
+    this.startForm = new FormGroup({
+      category: new FormControl('', Validators.required)
     });
 
     this.loading = this.loadingCtrl.create();
@@ -79,11 +79,9 @@ export class ListingFormPage {
     this.listing_ref = this.params.get('key');
 
     // Load categories
-    this.listingService.getCategories().subscribe(
-      data => { 
-        console.log(data);
-        this.categories = data
-       },
+    this.draftService.getCategories().subscribe((data) => { 
+        this.categories = data;
+      },
       error => { console.log(error) }
     );
 
@@ -100,21 +98,22 @@ export class ListingFormPage {
   * Save the listing type and show the next listing form
   */
   nextListingForm() {
-    if(this.typeForm.valid){      
-      this.listingService.loadItemDraft(null).then((result) => {
+    if(this.startForm.valid){      
+      this.draftService.loadItemDraft(null).then((result) => {
 
-        console.log(result);
         if(result["listing"] !== null) { 
 
           this.listing_ref = result["key"];
           this.listing = result["listing"];
 
-          this.listing.listing_type = this.typeForm.value.listing_type;
-          this.temp_medias = this.listing.medias;
+          this.listing.categories[this.startForm.value.category] = true;
 
-          this.listingService.updateItemDraft(this.listing_ref, { listing_type: this.typeForm.value.listing_type})
+          // Refactor this logic - not fix space holders!!!!
+          this.temp_medias = this.listing.medias;
+          this.draftService.updateItemDraft(this.listing_ref, this.listing.categories)
           .then(()=>{
             this.new_listing = false;
+            this.formControlRadio.categories = "checkmark-circle-outline";
           });
 
 
@@ -136,21 +135,13 @@ export class ListingFormPage {
   */
   loadItemDraft() {
 
-    this.listingService.loadItemDraft(this.listing_ref).then((result) => {
+    this.draftService.loadItemDraft(this.listing_ref).then((result) => {
 
       this.listing = result["listing"];
       if(!this.listing_ref){
         this.listing_ref = result["key"];
       }
       this.listing['key'] = this.listing_ref;
-
-      // Remove this code
-      // if(this.listing.form_control == undefined){
-        // this.listing['form_control'] = new FormControlModel();
-      // }
-      // if(this.listing.published == undefined){
-      //   this.listing['published'] = false;
-      // }
 
       // Set the UI Form values on into the view
       this.temp_medias = this.listing.medias;
@@ -183,25 +174,6 @@ export class ListingFormPage {
   }
 
   /**
-  * Save the listing data
-  */ 
-  // saveItemDraft(){
-  //     if(this.temp_medias.length > 0){
-  //       this.listing.medias = this.temp_medias;
-  //     }
-
-  //     if(this.listing_ref){
-  //       this.listingService.updateItemDraft(this.listing_ref, this.listing).catch((error) => {
-  //         console.log(error);
-  //         let title = "Ops! Sorry about that";
-  //         this.BaseApp.showAlert(title, error.message);
-  //       });
-  //     }
-
-  //     this.checkPublishValidation();
-  // }
-
-  /**
   * Save each step of the form
   */
   saveStep(){
@@ -227,7 +199,7 @@ export class ListingFormPage {
 
       this.checkPublishValidation();
 
-      this.listingService.updateItemDraft(this.listing_ref, this.listing).catch((error) => {
+      this.draftService.updateItemDraft(this.listing_ref, this.listing).catch((error) => {
         console.log(error);
         let title = "Ops! Sorry about that";
         this.BaseApp.showAlert(title, error.message);
@@ -269,7 +241,7 @@ export class ListingFormPage {
     let blobFilePromise = this.mediaService.createBlobFile(media_path);
     // Upload the Blob file to the storate server
     let uploadTask = blobFilePromise.then((blobFile) =>{
-      return this.listingService.uploadPicture(blobFile, this.listing_ref);
+      return this.draftService.uploadPicture(blobFile, this.listing_ref);
     }).catch((error) => {
       console.log(error.message);
     });
@@ -285,7 +257,7 @@ export class ListingFormPage {
 
       media = {medias: this.temp_medias};
       // Update the listing media reference with the new picture URI
-      return this.listingService.updateItemDraft(this.listing_ref, media).then(() => {
+      return this.draftService.updateItemDraft(this.listing_ref, media).then(() => {
         // this.loading.dismiss();
       }).catch((error) => {
         console.log(error.message);
@@ -441,24 +413,6 @@ export class ListingFormPage {
     });
     priceModal.present();
   }
-
-  /**
-  * Handle the Schedule Modal with the checkbox controle
-  */
-  // presentScheduleModal() {
-  //   let scheduleModal = this.modalCtrl.create(ListingFormSchedulePage, { data: this.listing });
-  //   scheduleModal.onDidDismiss(data => {
-
-  //     if(data.form_control.schedule === true){
-  //       this.formControlRadio.schedule = "checkmark-circle-outline";
-  //     }else{
-  //       this.formControlRadio.schedule = "radio-button-off";
-  //     }
-  //     this.listing = data;
-  //     this.saveStep();
-  //   });
-  //   scheduleModal.present();
-  // }
 
   /**
   * Handle the Details Modal with the checkbox controle
