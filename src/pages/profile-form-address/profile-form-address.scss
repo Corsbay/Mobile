@@ -3,7 +3,7 @@ page-profile-form-address {
 		background-color: color($colors, background, base);
 		@include basic-list-styles($black-d, $black-a);
 
-		@include basic-input-style($white, $input-color, $white-d);
+		@include basic-input-style();
 
 		.address-primary {
 			h2 {

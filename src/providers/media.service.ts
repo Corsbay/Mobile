@@ -10,7 +10,10 @@ declare var window;
 @Injectable()
 export class MediaService {
 
+  // NET TO BE A CONSTANT!!!
+  public DEFAULT_PICTURE = './assets/images/default-placeholder.png';
 	public loading: any;
+
   constructor(public platform: Platform, public loadingCtrl: LoadingController) {
     console.log('Hello MediaService Provider');
 

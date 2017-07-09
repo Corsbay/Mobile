@@ -1,4 +1,8 @@
 @mixin radio-item-styles($color, $background, $active-color){
+
+	$active-color: $theme-color-4;
+	$background: $white-d;
+
 	.radio-item	{
 		padding: 0px;
 		/*border: none !important;*/
@@ -22,7 +26,7 @@
 			margin-right: 24px !important;
 
 			.radio-icon	{
-				border: none;
+				/*border: none;*/
 				background-color: $background;
 				border-radius: 50%;
 				width: 25px;
@@ -37,10 +41,10 @@
 					border: none;
 					background-color: $active-color;
 					border-radius: 50%;
-					width: 15px;
-					height: 15px;
-					top: 5px;
-					left: 5px;
+					width: 17px;
+					height: 17px;
+					top: 4px;
+					left: 4px;
 					transform: rotate(0deg);
 				}
 			}

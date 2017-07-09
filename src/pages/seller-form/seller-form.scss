@@ -6,7 +6,7 @@ seller-form-page {
 			margin-bottom: 20px;
 
 			ion-item {
-				@include basic-input-style($white, $theme-color-2, $white-d);
+				@include basic-input-style();
 				background-color: transparent;
 
 				.seller-image	{

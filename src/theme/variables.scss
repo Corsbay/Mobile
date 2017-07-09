@@ -22,10 +22,11 @@ $black-b: lighten($black, 20%);
 $black-c: lighten($black, 40%);
 $black-d: lighten($black, 60%);
 
+/* Matirial Color SPEC - Indigo */
 $theme-color-1: $white-a; /* primer color 500  bar color */
-$theme-color-2: #0066ff; /*#ff3366    #EF5350; /* Bold color 700  Hiligh icons and hedears */
-$theme-color-3: #6699ff; /*#E57373; /* light color 300 */
-$theme-color-4: #0033ff;/*#EF5350; /* Accent color A400  Buttons and actions */
+$theme-color-2: #303F9F;  /* Bold color 700  Hiligh icons and hedears */
+$theme-color-3: #7986CB;  /* light color 300 */
+$theme-color-4: #3D5AFE;  /* Accent color A400  Buttons and actions */
 
 $theme-color-5: #333333; /* Title text Colors */
 $theme-color-6: #666666; /* Secundary texts */
@@ -38,6 +39,9 @@ $theme-color-6: #666666; /* Secundary texts */
 // to match your app's branding. Ionic uses a Sass map of
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
+
+$label: $theme-color-2;
+$input-content: $black-a;
 
 $text-color: $black-b;
 $input-color: $black-c;

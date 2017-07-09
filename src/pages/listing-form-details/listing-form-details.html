@@ -41,7 +41,7 @@
 		    </ion-item> -->
 	  		<ion-item>
 		      <ion-label>Item Conditions</ion-label>
-	        <ion-select formControlName="condition" multiple="false">
+	        <ion-select formControlName="condition" multiple="false" >
 	          <ion-option *ngFor="let condition of conditions" value="{{condition.value}}">
 	            {{condition.label}}
 	          </ion-option>

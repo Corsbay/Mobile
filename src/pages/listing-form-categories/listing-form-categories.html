@@ -25,35 +25,26 @@
 
 <ion-content class="form-content">
 
-<!--   <form class="form-style" [formGroup]="formCategories">
-    <section class="form-section">
-      <h2 class="section-title">
-        <p>Now you can select the cateories that fits your product to
-        be used as a tag mark to help the customers find your products!</p>
-      </h2>
-    </section>
-
-    <ion-list class="checkbox-list">
-      <ion-item>
-        <ion-label>Categories</ion-label>
-        <ion-select formControlName="categories" multiple="true" selectedText=" - ">
-          <ion-option *ngFor="let category of categories">
-            {{category.label}}
-          </ion-option>
-        </ion-select>
-      </ion-item>
-
-    </ion-list>
-  </form> -->
-
-  <ion-list>
+      <ion-list class="radio-group" radio-group [(ngModel)]="category">
+        <ion-item-divider></ion-item-divider>
+        <ion-item class="radio-item" *ngFor="let category of categories">
+          <ion-label>
+            {{ category.category }}
+            <div>
+              <p>{{ category.note }}</p>
+            </div>
+          </ion-label>
+          <ion-radio value="{{ category.category }}"></ion-radio>
+        </ion-item>
+      </ion-list>
+  <!-- <ion-list> -->
 <!--     <ion-list-header>
       My Categories
     </ion-list-header> -->
-    <ion-item class="checkbox-item" *ngFor="let category of categories">
+<!--     <ion-item class="checkbox-item" *ngFor="let category of categories">
       <ion-label>{{category.category}}</ion-label>
       <ion-checkbox [(ngModel)]="category.checked"></ion-checkbox>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 
 </ion-content>

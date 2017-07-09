@@ -1,28 +1,49 @@
 {
 	"categories":	[
 		{
-			"category": "Eletronics",
+			"category": "Consumer Eletronics",
 			"checked": false, 
 			"image": "",
 			"subcategoris": [],
 			"note": ""
 		},
 		{
-			"category": "Entertainment",
+			"category": "Computers, Laptops & Accessories",
 			"checked": false, 
 			"image": "",
 			"subcategoris": [],
 			"note": ""
 		},
 		{
-			"category": "Motors",
+			"category": "Cell Phones, Tablets & Accessories",
 			"checked": false, 
 			"image": "",
 			"subcategoris": [],
 			"note": ""
 		},
 		{
-			"category": "Fashion",
+			"category": "Video Games, Consoles & Accessories",
+			"checked": false, 
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		},
+		{
+			"category": "Cameras & Photo",
+			"checked": false, 
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		},
+		{
+			"category": "Motors & Accessories",
+			"checked": false, 
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		},
+		{
+			"category": "Clothing, Shoes & Accessories",
 			"checked": false, 
 			"image": "",
 			"subcategoris": [],
@@ -30,21 +51,52 @@
 			
 		},
 		{
-			"category": "Home",
+			"category": "Health & Beauty",
+			"checked": false, 
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+			
+		},
+		{
+			"category": "Home & Garden",
 			"checked": false, 
 			"image": "",
 			"subcategoris": [],
 			"note": ""
 		},
 		{
-			"category": "Sports",
+			"category": "Sports & Fitness",
 			"checked": false, 
 			"image": "",
 			"subcategoris": [],
 			"note": ""
 		},
 		{
-			"category": "Children",
+			"category": "Jewelry, Watches & Accessories",
+			"checked": false, 
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+			
+		},
+		{
+			"category": "Collections & Antiques",
+			"checked": false, 
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		},
+		{
+			"category": "Toys & Hobby",
+			"checked": false, 
+			"image": "",
+			"subcategoris": [],
+			"note": ""
+		}
+		,
+		{
+			"category": "Business & Industrial",
 			"checked": false, 
 			"image": "",
 			"subcategoris": [],

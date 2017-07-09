@@ -18,10 +18,19 @@
 </ion-header>
 
 <ion-content class="image-content">
+  <section class="form-section">
+    <button ion-button block large class="upload-image-button" (click)="cameraActionSheet()">
+      <ion-icon name="camera"></ion-icon>
+      <h3 class="button-title">Add Picture</h3>
+    </button>
+  </section>
+
 	<ion-list [reorder]="orderState" (ionItemReorder)="reorderItems($event)">
 
 	  <ion-item item-center no-lines *ngFor="let media of medias; let i = index">
-      <preload-image  [ratio]="{w:4, h:2}" [src]="media.media_path"></preload-image>
+      <!-- <ion-thumbnail item-left large> -->
+      <preload-image  [ratio]="{w:4, h:3}" [src]="media.media_path"></preload-image>
+      <!-- </ion-thumbnail> -->
       <div class="image-button">
         <button ion-button clear (click)="confirmDeleteImage(i)">
           <!-- <ion-icon ios="ios-close" md="md-close"></ion-icon> -->

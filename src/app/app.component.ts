@@ -86,10 +86,11 @@ export class MyApp {
       this.pages = [
         { title: 'Home', icon: 'ios-home-outline', component: ListingPage, type: 'root' },
         { title: 'My Orders', icon: 'ios-bookmarks-outline', component: ProfileOrdersPage, type: 'push'},
-        { title: 'Listings', icon: 'ios-add-circle-outline', component: ListingUserPage, type: 'push'},
-        { title: 'Subscription', icon: 'ios-create-outline', component: ListingUserPage, type: 'push'},
+        // { title: 'Listings', icon: 'ios-add-circle-outline', component: ListingUserPage, type: 'push'},
+        // { title: 'Subscription', icon: 'ios-create-outline', component: ListingUserPage, type: 'push'},
         { title: 'Profile', icon: 'ios-contact-outline', component: ProfilePage, type: 'root'},
-        { title: 'Seller', icon: 'ios-briefcase-outline', component: SellerPage, type: 'root'}
+        { title: 'Seller', icon: 'ios-briefcase-outline', component: SellerPage, type: 'root'},
+        { title: 'Help', icon: 'ios-help-circle-outline', component: SellerPage, type: 'root'},
       ];
 
       // no need anymore

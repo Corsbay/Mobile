@@ -14,10 +14,10 @@ import { PriceModel } from '../models/item-draft-model';
 export class ItemDraftService {
 
 	private DRAFT_REF: string = "listing_draft/";
+  private DEFAULT_PICTURE = './assets/images/default-placeholder.png';
 	private profile: any;
 
 	public listing: ItemDraftModel;
-	public max_media: number = 6;
 	public result: { key: string; listing: any; };
 
   constructor(
@@ -79,8 +79,13 @@ export class ItemDraftService {
       if(key !== null){
 
         this.getItemDraft(key).once('value', (listingSnap) => {
-          this.result = { key: listingSnap.key, listing: listingSnap.val() };
-           resolve(this.result);
+
+          let listing = listingSnap.val();
+          if(listing.medias == undefined){
+            listing['medias'] = [{media_path: this.DEFAULT_PICTURE, holder: true}];
+          }
+          this.result = { key: listingSnap.key, listing: listing };
+          resolve(this.result);
         })
         .catch((error) => {
           reject(error);
@@ -88,17 +93,12 @@ export class ItemDraftService {
 
       }else{ // If is a new listing, define the basic listin object
 
-        let medias = [];
-        let i = this.max_media;
-        while(i--) {
-          medias.push({media_path: './assets/images/default-placeholder.png'});
-        }
-
         // Create a craft to the listing
         var data = new ItemDraftModel();
-        data.medias = medias;
+        data.medias.push({media_path: this.DEFAULT_PICTURE, holder: true});
         data.price = new PriceModel();
         data.price.currency = this.profile.currency;
+
         console.log("Currencyyyyyyyyyy",data);
 
         this.saveItemDraft(data).then((ref) => {
@@ -121,7 +121,7 @@ export class ItemDraftService {
   * @param ref - the listing reference to map the file within the firebase storage
   */
   uploadPicture(imageBlob, ref){
-    let imageRef = this.DRAFT_REF + ref + "/listing_" + Date.now() + ".jpg";
+    let imageRef = this.DRAFT_REF + ref + "/item_" + Date.now() + ".jpg";
     return new Promise((resolve, reject) => {
 
       let upTask = this._dataService.imageRef().child( imageRef ).put(imageBlob);

@@ -52,7 +52,7 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { WalkthroughPage } from '../pages/walkthrough/walkthrough';
 
 import { SellerPage } from '../pages/seller/seller';
-import { SellerFormPage } from '../pages/seller-form/seller-form';
+// import { SellerFormPage } from '../pages/seller-form/seller-form';
 
 import { CardFormPage } from '../pages/card-form/card-form';
 
@@ -132,7 +132,7 @@ declare var cordova: any;
     WalkthroughPage,
 
     SellerPage,
-    SellerFormPage,
+    // SellerFormPage,
 
     SignupPage,
     ForgotPasswordPage,
@@ -205,7 +205,7 @@ declare var cordova: any;
     WalkthroughPage,
 
     SellerPage,
-    SellerFormPage,
+    // SellerFormPage,
 
     ForgotPasswordPage,
     SignupPage,

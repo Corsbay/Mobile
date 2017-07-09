@@ -18,7 +18,7 @@ page-listing-form-price {
 			}
 
 			ion-item {
-				@include basic-input-style(color($colors, background, base), $input-color, $white-d);
+				@include basic-input-style();
 
 				&.item {
 					background-color: $white;

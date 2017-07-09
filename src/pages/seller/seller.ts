@@ -26,6 +26,7 @@ export class SellerPage {
 	public listing_key: string;
 
 	public orders: any;
+  public image: string;
 
   constructor(
   	public nav: NavController,
@@ -72,6 +73,10 @@ export class SellerPage {
 	      Object.keys(objects).map((key)=>{
 	      	objects[key].key = key;
 
+          if(objects[key].medias == undefined){
+            objects[key]['medias'] = [{media_path: './assets/images/default-placeholder.png', holder: true}];
+          }
+
           if(objects[key].published == true){
             this.listings.push(objects[key]);
           }else{
@@ -80,9 +85,7 @@ export class SellerPage {
 	      });
 
         this.listings.reverse();
-
 	    }
-
       loading.dismiss();
     });
 

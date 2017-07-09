@@ -23,7 +23,7 @@ page-listing-form-details {
 
 			ion-item {
 				background-color: $white;
-				@include basic-input-style($white, $black-a, $white-d);
+				@include basic-input-style();
 			}
 			@include switcher-item-styles($black-b, $theme-color-2);
 

@@ -1,12 +1,10 @@
 @mixin checkbox-tags-styles($background, $color, $active-background, $active-color){
-	.checkbox-tags
-	{
+	.checkbox-tags {
 		@include display(flex);
 		@include flex-wrap(wrap);
 		padding: 0px 15px;
 
-		.checkbox-tag
-		{
+		.checkbox-tag	{
 			flex: 0 1 auto;
 			width: initial;
 			font-size: 1.4rem;
@@ -21,14 +19,12 @@
 			ion-checkbox {
 				margin: 0px !important;
 
-				.checkbox-icon
-				{
+				.checkbox-icon {
 					display: none;
 				}
 			}
 
-			.item-inner
-			{
+			.item-inner {
 				padding: 0px 8px;
 				border: none;
 				background-color: $background;
@@ -39,10 +35,8 @@
 				}
 			}
 
-			&.item-checkbox-checked
-			{
-				.item-inner
-				{
+			&.item-checkbox-checked	{
+				.item-inner	{
 					background-color: $active-background;
 					color: $active-color;
 				}

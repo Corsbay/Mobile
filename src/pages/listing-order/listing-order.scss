@@ -72,7 +72,7 @@ page-listing-order {
 			}
 
 
-			@include basic-input-style($white, $input-color, $white-d);
+			@include basic-input-style();
 			.text-input {
 				padding-right: 5px;
 				text-align: right;

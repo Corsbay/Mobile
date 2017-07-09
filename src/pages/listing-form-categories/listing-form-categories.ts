@@ -12,6 +12,7 @@ export class ListingFormCategoriesPage {
 
 	public data: any;
   public categories: Array<any> = [];
+  public category;
 
   constructor(
   	public nav: NavController, 
@@ -31,12 +32,17 @@ export class ListingFormCategoriesPage {
 
         if(this.data.categories !== undefined ){
           Object.keys(this.data.categories).forEach((category) => {
-            for(let i = 0; i < this.categories.length; i++) {
-              if(category === this.categories[i].category){
-                this.categories[i].checked = true;
-                break;
-              }
-            }
+
+            this.category = category;
+
+            // Usend to set more them on category
+            // for(let i = 0; i < this.categories.length; i++) {
+            //   if(category === this.category){
+            //     this.categories[i].checked = true;
+            //     this.category.checked = true;
+            //     break;
+            //   }
+            // }
           });
         }
 
@@ -51,12 +57,14 @@ export class ListingFormCategoriesPage {
   save() {
 
     this.data.categories = {};
-	  this.categories.forEach((category) => {
-      if(category.checked){
-        this.data.categories[category.category] = true;
-      }
-    });
+    this.data.categories[this.category] = true;
 
+   // Usend to set more them on category
+	 // this.categories.forEach((category) => {
+   //    if(category.checked){
+   //      this.data.categories[category.category] = true;
+   //    }
+   //  });
  
 		if(Object.keys(this.data.categories).length > 0){
 			this.data.form_control.categories = true;

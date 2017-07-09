@@ -3,7 +3,26 @@ page-listing-form-categories {
 	.form-content {
 		background-color: $white-a;
 
-		.form-style {
+
+		.radio-group {
+			background-color: $white;
+			@include element-shadow();
+			@include radio-item-styles($black-c, $white-a, $theme-color-2);
+
+			@include color-radio-styles($black-c, $theme-color-2);
+
+			ion-item {
+				margin-left: 10px;
+				background-color: $white;
+				
+				.listing-type-info {
+					font-size: 1.0rem;
+					color: #ff0033;
+				}
+			}
+		}
+
+/*		.form-style {
 
 			.form-section	{
 				padding: 0px 5px;
@@ -22,7 +41,7 @@ page-listing-form-categories {
 			}
 
 			ion-item {
-				@include basic-input-style(color($colors, background, base), $black-b, $white-d);
+				@include basic-input-style();
 
 				&:first-of-type {
 					margin-top: 0px;
@@ -39,9 +58,7 @@ page-listing-form-categories {
 
 				@include call-to-action-button-styles(color($colors, button, base), color($colors, button, contrast));
 			}
-		}
-
+		}*/
+	
 	}
-
-
 }

@@ -1,10 +1,9 @@
 @mixin radio-tags-styles($background, $color, $active-color){
-	.radio-tags
-	{
+
+	.radio-tags	{
 		@include display(flex);
 
-		.radio-tag
-		{
+		.radio-tag {
 			flex: 1;
 			margin: 0 4px 0 4px;
 			padding: 0px;
@@ -14,22 +13,19 @@
 			letter-spacing: 0.2px;
 			min-height: initial;
 
-			&.item-block
-			{
+			&.item-block {
 				border: 1px solid $color;
 			}
 
 			ion-radio {
 				margin: 0px !important;
 
-				.radio-icon
-				{
+				.radio-icon	{
 					display: none;
 				}
 			}
 
-			.item-inner
-			{
+			.item-inner	{
 				border: none;
 				background-color: $background;
 
@@ -38,8 +34,7 @@
 				}
 			}
 
-			&.item-radio-disabled
-			{
+			&.item-radio-disabled	{
 				opacity: 0.5;
 			}
 

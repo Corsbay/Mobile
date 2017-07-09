@@ -27,7 +27,7 @@ export class ProfilePage {
 
   public display: string;
   public profile: ProfileModel = new ProfileModel();
-  public seller: any;
+  // public seller: any;
 
   public primaryAddress: any;
 
@@ -60,11 +60,11 @@ export class ProfilePage {
           });
         }
 
-        if(this.profile.seller_profile){
-          this.sellerService.getSeller().then((seller) => {
-            this.seller = seller;
-          });
-        }
+        // if(this.profile.seller_profile){
+        //   this.sellerService.getSeller().then((seller) => {
+        //     this.seller = seller;
+        //   });
+        // }
 
         loading.dismiss();
       }

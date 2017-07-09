@@ -1,4 +1,8 @@
-@mixin basic-input-style($background, $color, $placeholder-color){
+@mixin basic-input-style(){
+
+	$background: $white;
+	$placeholder-color: $white-c;
+
 	&.item {
 		padding: 0px;
 		background-color: $background;
@@ -7,20 +11,24 @@
 			color: $theme-color-2;
 		}
 
-		.item-inner	{
-			padding-left: 16px;
-			/*color: $color;*/
-		}
-
 		.text-input	{
+			color: $input-content;
 			font-size: 1.5rem;
 			margin-right: 0px;
 			margin-left: 0px;
 			width: 100%;
 			padding: 0px;
-			color: $color;
+
 			@include placeholder {
 				color: $placeholder-color;
+			}
+		}
+
+		.item-inner	{
+			padding-left: 16px;
+			
+			ion-label {
+				color: $label;
 			}
 		}
 
@@ -30,24 +38,33 @@
 
 		.item-textarea	{
 			font-size: 1.6rem;
-			color: $color;
+			color: $input-content;
 
 			@include placeholder {
 				color: $placeholder-color;
 			}
 		}
 
+		&.item-select {
+			color: $input-content;
+			ion-label{
+				color: $label;
+			}
+		}
+
 		&.item-label {
 			margin: 0px;
 			font-size: 1.6rem;
-			color: $black-c;
 			margin: 0px;
+			ion-label {
+				color: $label;
+			}
 		}
 
 		&.item-label-floating{
 			margin-top: 0px;
 			ion-label {
-				color: $black-c;
+				color: $label;
 			}
 		}
 
@@ -55,7 +72,7 @@
 			margin-top: 0px;
 			ion-label {
 				font-size: 1.6rem;
-				color: $black-c;
+				color: $label;
 			}
 		}
 

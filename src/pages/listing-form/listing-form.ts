@@ -85,6 +85,9 @@ export class ListingFormPage {
       error => { console.log(error) }
     );
 
+    // Set the temporary media holder
+    this.setTempMedia();
+
     // test if the form is an new entry
     if(this.listing_ref !== undefined){
       this.new_listing = false;
@@ -92,6 +95,16 @@ export class ListingFormPage {
       this.loadItemDraft();
     }
 
+  }
+
+  /*
+  * Set the temporary media holder
+  */
+  setTempMedia() {
+    let i = this.max_media;
+    while(i--) {
+      this.temp_medias.push({media_path: this.mediaService.DEFAULT_PICTURE, holder: true});
+    }
   }
 
   /**
@@ -108,8 +121,6 @@ export class ListingFormPage {
 
           this.listing.categories[this.startForm.value.category] = true;
 
-          // Refactor this logic - not fix space holders!!!!
-          this.temp_medias = this.listing.medias;
           this.draftService.updateItemDraft(this.listing_ref, this.listing.categories)
           .then(()=>{
             this.new_listing = false;
@@ -144,7 +155,10 @@ export class ListingFormPage {
       this.listing['key'] = this.listing_ref;
 
       // Set the UI Form values on into the view
-      this.temp_medias = this.listing.medias;
+      this.listing.medias.forEach((media, key) => {
+        this.temp_medias.splice(key,0,media);
+        this.temp_medias.pop();
+      });
 
       // setup the radio boxies when the form have been saved
       if(this.listing.form_control !== undefined){
@@ -178,10 +192,6 @@ export class ListingFormPage {
   */
   saveStep(){
     if(this.listing !== undefined && this.listing_ref){
-
-      if(this.temp_medias.length > 0){
-        this.listing.medias = this.temp_medias;
-      }
 
       let check = 5;
       Object.keys(this.listing.form_control).map( ctrl_key => {
@@ -229,106 +239,19 @@ export class ListingFormPage {
   }
 
   /**
-  * Upload the picture to the database - Move this to listing.service!!!
-  * @param media = media object with the picture path
-  */
-  uploadPicture(media){
-
-    // this.loading.present();
-    // Get the media local path
-    let media_path = media.media_path;
-    // Read the media to Blob file
-    let blobFilePromise = this.mediaService.createBlobFile(media_path);
-    // Upload the Blob file to the storate server
-    let uploadTask = blobFilePromise.then((blobFile) =>{
-      return this.draftService.uploadPicture(blobFile, this.listing_ref);
-    }).catch((error) => {
-      console.log(error.message);
-    });
-
-    Promise.all([blobFilePromise, uploadTask]).then((results) => {
-
-      media.media_path = results[1]; // Index 1 contein a firebase URI to download the image
-      this.temp_medias.unshift(media);
-      this.temp_medias.pop();
-      this.temp_medias[0].order = 0;
-      this.temp_medias = this.reorderMedias(this.temp_medias);
-      this.max_media = this.max_media - 1;
-
-      media = {medias: this.temp_medias};
-      // Update the listing media reference with the new picture URI
-      return this.draftService.updateItemDraft(this.listing_ref, media).then(() => {
-        // this.loading.dismiss();
-      }).catch((error) => {
-        console.log(error.message);
-      });
-
-    }).catch((error) => {
-      console.log(error.message);
-      let title = "Ops! Sorry about that";
-      this.BaseApp.showAlert(title, error.message);
-    });
-  }
-
-  doGetPicture(source){ 
-    this.mediaService.getListingPicture(source).then((imageURI) => {
-      if(imageURI) {
-        let media = {media_path: imageURI};
-        this.uploadPicture(media);
-      }
-    });
-  }
-
-  cameraActionSheet(){
-    if(this.max_media > 1){
-      let actionSheet = this.actionSheetCtrl.create({
-        enableBackdropDismiss: false,
-        buttons: [
-          {
-            text: 'Take Picture',
-            icon: 'camera',
-            handler: () => {
-              this.doGetPicture("CAMERA");
-            }
-          },
-          {
-            text: 'Choose from Library',
-            icon: 'images',
-            handler: () => {
-              this.doGetPicture("LIBRARY");
-            }
-          },
-          {
-            text: 'Cancel',
-            role: 'cancel',
-            handler: () => {
-              console.log('Cancel clicked');
-              actionSheet.dismiss();
-            }
-          },
-
-        ]
-      });
-      actionSheet.present();
-    }else{
-      let title = "limit reached";
-      let message = "Sorry! You reach your limit of 6 pictures";
-      this.BaseApp.showAlert(title, message);
-    }
-  }
-
-  /**
   * Handle the Images Modal
   */
   presentImagesModal() {
-    let imagesModal = this.modalCtrl.create(ListingImagesPage, { medias: this.temp_medias });
+    let imagesModal = this.modalCtrl.create(ListingImagesPage, { data: this.listing });
     imagesModal.onDidDismiss(data => {
-      this.temp_medias = data;
-      let media = {medias: this.temp_medias};
-      
 
-      // Set to save
-      // this.saveStep(media);
+      this.setTempMedia();
+      data.medias.forEach((media, key) => {
+        this.temp_medias.splice(key,1,media);
+      });
+      
+      this.listing = data;
+      //this.saveStep();
     });
     imagesModal.present();
   }
@@ -432,17 +355,6 @@ export class ListingFormPage {
       }
     });
     detailsModal.present();
-  }
-
-  /**
-  *
-  */
-  reorderMedias(medias){
-    let len = medias.length;
-    while(len--){
-      medias[len].order = len;
-    }
-    return medias;
   }
 
   closeForm(){

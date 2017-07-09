@@ -21,7 +21,7 @@
 	.auth-form
 	{
 		ion-item {
-			@include basic-input-style(color($colors, background, base), $theme-color-6, $white-d);
+			@include basic-input-style();
 
 			&.item
 			{
